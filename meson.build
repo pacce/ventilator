@@ -3,7 +3,7 @@ project('gui', 'cpp', version : '0.1.0', default_options : ['warning_level=3', '
 qt  = import('qt6')
 
 dependencies  = [
-  dependency('qt6', modules: ['Core', 'Gui', 'Widgets'])
+  dependency('qt6', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
   ]
 includes      = include_directories('source')
 sources       = [
