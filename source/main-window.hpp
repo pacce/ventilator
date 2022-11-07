@@ -1,12 +1,14 @@
 #ifndef VENTILATIOR_WINDOW_HPP__
 #define VENTILATIOR_WINDOW_HPP__
 
-
+#include <cstdint>
 #include <QChart>
 #include <QLineSeries>
 #include <QMainWindow>
 #include <QPointF>
 #include <QVector>
+
+using namespace QtCharts;
 
 class Widget : public QWidget {
     Q_OBJECT
@@ -20,6 +22,9 @@ class Widget : public QWidget {
         QLineSeries *       series_;
         QVector<QPointF>    ps_;
 
+        uint32_t range_;
+        uint32_t xi_;
+        uint32_t xf_;
         std::size_t counter_;
 };
 

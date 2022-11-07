@@ -1,9 +1,9 @@
 project('ventilator', 'cpp', version : '0.1.0', default_options : ['warning_level=3', 'cpp_std=c++20'])
 
-qt  = import('qt6')
+qt  = import('qt5')
 
 dependencies  = [
-  dependency('qt6', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
+  dependency('qt5', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
   ]
 includes      = include_directories('source')
 sources       = [
