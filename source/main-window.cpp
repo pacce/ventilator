@@ -7,11 +7,13 @@
 #include <QValueAxis>
 #include <QVBoxLayout>
 
+#include "ventilator.hpp"
+
 Widget::Widget(QWidget * parent)
     : QWidget(parent)
     , chart_(new QChart)
     , series_(new QLineSeries)
-    , range_(20)
+    , range_(500)
     , xi_(0)
     , counter_(0)
 {
@@ -24,23 +26,25 @@ Widget::Widget(QWidget * parent)
 
     chart_->createDefaultAxes();
     chart_->axes(Qt::Horizontal).first()->setRange(xi_, xf_);
-    chart_->axes(Qt::Vertical).first()->setRange(-2, 2);
+    chart_->axes(Qt::Vertical).first()->setRange(0, 30.0);
 
     QVBoxLayout * layout = new QVBoxLayout(this);
     layout->addWidget(view);
 
+    ventilator::Ventilator * v = new ventilator::Ventilator(this);
+
     QTimer * timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Widget::update);
-    timer->start(100);
+    connect(timer, &QTimer::timeout, v, &ventilator::Ventilator::step);
+    connect(v, &ventilator::Ventilator::pressure, this, &Widget::update);
+    timer->start(10);
 }
 
 Widget::~Widget() {}
 
 void
-Widget::update() {
-    auto sample = QPointF(counter_, sin(counter_));    
-
-    if (ps_.size() < range_) {
+Widget::update(ventilation::Pressure<double> p) {
+    QPointF sample(counter_, static_cast<double>(p));
+    if (ps_.size() < static_cast<int>(range_)) {
         ps_.push_back(sample);
     } else {
         ps_.push_back(sample);

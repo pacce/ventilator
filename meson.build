@@ -3,15 +3,20 @@ project('ventilator', 'cpp', version : '0.1.0', default_options : ['warning_leve
 qt  = import('qt5')
 
 dependencies  = [
-  dependency('qt5', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
+    dependency('qt5', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
+  , dependency('ventilation')
   ]
 includes      = include_directories('source')
 sources       = [
-      'source/main.cpp'
-    , 'source/main-window.cpp'
+    'source/main.cpp'
+  , 'source/main-window.cpp'
+  , 'source/ventilator.cpp'
   ]
 processed     = qt.preprocess(
-    moc_headers         :  'source/main-window.hpp'
+    moc_headers         : [
+        'source/main-window.hpp'
+      , 'source/ventilator.hpp'
+      ]
   , include_directories : includes
   )
 

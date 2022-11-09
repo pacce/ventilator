@@ -8,6 +8,8 @@
 #include <QPointF>
 #include <QVector>
 
+#include <ventilation/ventilation.hpp>
+
 using namespace QtCharts;
 
 class Widget : public QWidget {
@@ -16,7 +18,7 @@ class Widget : public QWidget {
         Widget(QWidget * parent = 0);
         ~Widget();
     public slots:
-        void update();
+        void update(ventilation::Pressure<double> p);
     private:
         QChart *            chart_;
         QLineSeries *       series_;
