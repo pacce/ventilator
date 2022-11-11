@@ -12,8 +12,9 @@ namespace ventilator {
             Ventilator(QWidget * parent = 0);
             ~Ventilator();
         signals:
-            void
-            pressure(ventilation::Pressure<double> p);
+            void pressure(const ventilation::Pressure<double>& p);
+            void flow(const ventilation::Flow<double>& f);
+            void volume(const ventilation::Volume<double>& f);
         public slots:
             void
             step();

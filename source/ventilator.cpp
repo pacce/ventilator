@@ -10,7 +10,10 @@ namespace ventilator {
 
     using Flow      = ventilation::Flow<double>;
     using Pressure  = ventilation::Pressure<double>;
+    using PEEP      = ventilation::PEEP<double>;
+    using Peak      = ventilation::pressure::Peak<double>;
     using Volume    = ventilation::Volume<double>;
+    using Packet    = ventilation::Packet<double>;
 
     using duration  = std::chrono::duration<double>;
 
@@ -19,7 +22,7 @@ namespace ventilator {
         , step_(100us)
         , lung_(Resistance(50.0), Compliance(30.0e-3))
         , cycle_(duration(0.6), duration(2.4))
-        , ventilator_(Pressure(5.0), Pressure(20.0), cycle_)
+        , ventilator_(PEEP(5.0), Peak(20.0), cycle_)
     {}
 
     Ventilator::~Ventilator() {}
@@ -29,19 +32,20 @@ namespace ventilator {
         duration total      = 10ms;
         duration current    = 0s;
 
-        std::vector<Pressure> ps;
+        std::vector<Packet> ps;
         while (current <= total) {
             current += step_;
-
-            ventilation::modes::Packet packet = ventilator_(lung_, step_);
-            ps.push_back(packet.pressure);
+            ps.push_back(ventilator_(lung_, step_));
         }
         double den  = 1.0 / static_cast<double>(ps.size());
-        Pressure p  = std::accumulate(
-                ps.begin()
+        Packet p  = std::accumulate(
+                  ps.begin()
                 , ps.end()
-                , Pressure()
-                , [=](Pressure acc, Pressure v) { return (v * den) + acc; });
-        emit pressure(p);
+                , Packet()
+                , [=](Packet acc, Packet v) { return (v * den) + acc; }
+                );
+        emit flow(p.flow);
+        emit pressure(p.pressure);
+        emit volume(p.volume);
     }
 } // namespace ventilator
