@@ -9,59 +9,47 @@
 
 #include "ventilator.hpp"
 
-Widget::Widget(QWidget * parent)
-    : QWidget(parent)
-    , chart_(new QChart)
-    , series_(new QLineSeries)
-    , range_(500)
-    , xi_(0)
-    , counter_(0)
-{
-    xf_ = range_ - 1;
-
-    chart_->addSeries(series_);
-
-    QChartView * view = new QChartView(chart_);
-    view->setMinimumSize(800, 600);
-
-    chart_->createDefaultAxes();
-    chart_->axes(Qt::Horizontal).first()->setRange(xi_, xf_);
-    chart_->axes(Qt::Vertical).first()->setRange(0, 30.0);
-
-    QVBoxLayout * layout = new QVBoxLayout(this);
-    layout->addWidget(view);
-
-    ventilator::Ventilator * v = new ventilator::Ventilator(this);
-
-    QTimer * timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, v, &ventilator::Ventilator::step);
-    connect(v, &ventilator::Ventilator::pressure, this, &Widget::update);
-    timer->start(10);
-}
-
-Widget::~Widget() {}
-
-void
-Widget::update(ventilation::Pressure<double> p) {
-    QPointF sample(counter_, static_cast<double>(p));
-    if (ps_.size() < static_cast<int>(range_)) {
-        ps_.push_back(sample);
-    } else {
-        ps_.push_back(sample);
-        ps_.pop_front();
-        chart_->axes(Qt::Horizontal).first()->setRange(++xi_, ++xf_);
-    }
-    series_->replace(ps_);
-
-    counter_++;
-}
-
-
 Ventilator::Ventilator(QWidget * parent)
     : QMainWindow(parent)
 {
-    widget_ = new Widget();
-    setCentralWidget(widget_);
+    flow_       = new ventilator::Chart;
+    pressure_   = new ventilator::Chart;
+    volume_     = new ventilator::Chart;
+
+    flow_->set_yrange(-0.5, 0.5);
+    pressure_->set_yrange(0, 30.0);
+    volume_->set_yrange(0, 0.6);
+
+    QVBoxLayout * layout = new QVBoxLayout;
+    layout->addWidget(flow_);
+    layout->addWidget(pressure_);
+    layout->addWidget(volume_);
+
+    QWidget * widget = new QWidget;
+    widget->setLayout(layout);
+    setCentralWidget(widget);
+
+    v = new ventilator::Ventilator;
+
+    QTimer * timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, v, &ventilator::Ventilator::step);
+
+    connect(v
+            , &ventilator::Ventilator::flow
+            , flow_
+            , [this](const ventilation::Flow<double>& p) { flow_->update(p); }
+            );
+    connect(v
+            , &ventilator::Ventilator::pressure
+            , pressure_
+            , [this](const ventilation::Pressure<double>& p) { pressure_->update(p); }
+            );
+    connect(v
+            , &ventilator::Ventilator::volume
+            , flow_
+            , [this](const ventilation::Volume<double>& p) { volume_->update(p); }
+            );
+    timer->start(10);
 }
 
 Ventilator::~Ventilator()

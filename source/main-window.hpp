@@ -10,25 +10,8 @@
 
 #include <ventilation/ventilation.hpp>
 
-using namespace QtCharts;
-
-class Widget : public QWidget {
-    Q_OBJECT
-    public:
-        Widget(QWidget * parent = 0);
-        ~Widget();
-    public slots:
-        void update(ventilation::Pressure<double> p);
-    private:
-        QChart *            chart_;
-        QLineSeries *       series_;
-        QVector<QPointF>    ps_;
-
-        uint32_t range_;
-        uint32_t xi_;
-        uint32_t xf_;
-        std::size_t counter_;
-};
+#include "chart.hpp"
+#include "ventilator.hpp"
 
 class Ventilator : public QMainWindow {
     Q_OBJECT
@@ -36,7 +19,11 @@ class Ventilator : public QMainWindow {
         Ventilator(QWidget * parent = 0);
         ~Ventilator();
     private:
-        Widget * widget_;
+        ventilator::Chart * flow_;
+        ventilator::Chart * pressure_;
+        ventilator::Chart * volume_;
+
+        ventilator::Ventilator  * v;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

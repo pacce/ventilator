@@ -10,11 +10,13 @@ includes      = include_directories('source')
 sources       = [
     'source/main.cpp'
   , 'source/main-window.cpp'
+  , 'source/chart.cpp'
   , 'source/ventilator.cpp'
   ]
 processed     = qt.preprocess(
     moc_headers         : [
         'source/main-window.hpp'
+      , 'source/chart.hpp'
       , 'source/ventilator.hpp'
       ]
   , include_directories : includes
