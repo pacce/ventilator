@@ -13,6 +13,7 @@ namespace ventilator {
     {
         QChartView * view = new QChartView(chart_);
 
+        chart_->legend()->hide(); // Hides annoying blue square
         chart_->addSeries(series_);
         chart_->createDefaultAxes();
 
@@ -32,6 +33,11 @@ namespace ventilator {
     void
     Chart::set_yrange(float start, float finish) {
         chart_->axes(Qt::Vertical).first()->setRange(start, finish);
+    }
+
+    void
+    Chart::set_title(const QString& title) {
+        chart_->setTitle(title);
     }
 
     void

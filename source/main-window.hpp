@@ -23,7 +23,7 @@ class Ventilator : public QMainWindow {
         ventilator::Chart * pressure_;
         ventilator::Chart * volume_;
 
-        ventilator::Ventilator  * v;
+        ventilator::Ventilator * v;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

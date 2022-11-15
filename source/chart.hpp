@@ -4,6 +4,7 @@
 #include <QChart>
 #include <QLineSeries>
 #include <QPointF>
+#include <QString>
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 
@@ -18,6 +19,7 @@ namespace ventilator {
 
             void set_xrange(float start, float finish);
             void set_yrange(float start, float finish);
+            void set_title(const QString& title);
         public slots:
             void update(const ventilation::Flow<double>& p);
             void update(const ventilation::Flow<float>& p);
