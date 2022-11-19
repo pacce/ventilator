@@ -15,6 +15,7 @@ Ventilator::Ventilator(QWidget * parent)
     flow_       = new ventilator::Chart;
     pressure_   = new ventilator::Chart;
     volume_     = new ventilator::Chart;
+    compliance_ = new ventilator::Parameter;
 
     flow_->set_yrange(-0.5, 0.5);
     flow_->set_title("Flow (L/s)");
@@ -29,6 +30,7 @@ Ventilator::Ventilator(QWidget * parent)
     layout->addWidget(flow_);
     layout->addWidget(pressure_);
     layout->addWidget(volume_);
+    layout->addWidget(compliance_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
