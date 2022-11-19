@@ -8,7 +8,8 @@ dependencies  = [
   ]
 includes      = include_directories('source')
 sources       = [
-    'source/main.cpp'
+    'source/lung-widget.cpp'
+  , 'source/main.cpp'
   , 'source/main-window.cpp'
   , 'source/chart.cpp'
   , 'source/parameter.cpp'
@@ -16,7 +17,8 @@ sources       = [
   ]
 processed     = qt.preprocess(
     moc_headers         : [
-        'source/main-window.hpp'
+        'source/lung-widget.hpp'
+      , 'source/main-window.hpp'
       , 'source/chart.hpp'
       , 'source/parameter.hpp'
       , 'source/ventilator.hpp'

@@ -11,7 +11,7 @@
 #include <ventilation/ventilation.hpp>
 
 #include "chart.hpp"
-#include "parameter.hpp"
+#include "lung-widget.hpp"
 #include "ventilator.hpp"
 
 class Ventilator : public QMainWindow {
@@ -23,7 +23,8 @@ class Ventilator : public QMainWindow {
         ventilator::Chart * flow_;
         ventilator::Chart * pressure_;
         ventilator::Chart * volume_;
-        ventilator::Parameter * compliance_;
+
+        ventilator::Lung * lung_;
 
         ventilator::Ventilator * v;
 };
