@@ -37,28 +37,28 @@ Ventilator::Ventilator(QWidget * parent)
     widget->setLayout(layout);
     setCentralWidget(widget);
 
-    v = new ventilator::Ventilator;
+    engine_ = new ventilator::Engine;
 
     QTimer * timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, v, &ventilator::Ventilator::step);
+    connect(timer, &QTimer::timeout, engine_, &ventilator::Engine::step);
 
-    connect(v
-            , &ventilator::Ventilator::flow
+    connect(engine_
+            , &ventilator::Engine::flow
             , flow_
             , [this](const ventilation::Flow<double>& p) { flow_->update(p); }
             );
-    connect(v
-            , &ventilator::Ventilator::pressure
+    connect(engine_
+            , &ventilator::Engine::pressure
             , pressure_
             , [this](const ventilation::Pressure<double>& p) { pressure_->update(p); }
             );
-    connect(v
-            , &ventilator::Ventilator::volume
+    connect(engine_
+            , &ventilator::Engine::volume
             , flow_
             , [this](const ventilation::Volume<double>& p) { volume_->update(p); }
             );
-    connect(lung_, &ventilator::lung::Lung::compliance, v, &ventilator::Ventilator::compliance);
-    connect(lung_, &ventilator::lung::Lung::resistance, v, &ventilator::Ventilator::resistance);
+    connect(lung_, &ventilator::lung::Lung::compliance, engine_, &ventilator::Engine::compliance);
+    connect(lung_, &ventilator::lung::Lung::resistance, engine_, &ventilator::Engine::resistance);
     timer->start(10);
 }
 

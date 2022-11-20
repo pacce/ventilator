@@ -24,11 +24,8 @@ class Ventilator : public QMainWindow {
         ventilator::Chart * pressure_;
         ventilator::Chart * volume_;
 
-        ventilator::lung::Lung * lung_;
-        // ventilator::lung::Compliance * c_;
-        // ventilator::lung::Resistance * r_;
-
-        ventilator::Ventilator * v;
+        ventilator::lung::Lung *    lung_;
+        ventilator::Engine *        engine_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__
