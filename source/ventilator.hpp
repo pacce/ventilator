@@ -17,8 +17,9 @@ namespace ventilator {
             void flow(const ventilation::Flow<double>& f);
             void volume(const ventilation::Volume<double>& f);
         public slots:
-            void
-            step();
+            void step();
+            void compliance(const ventilation::Compliance<double>& c);
+            void resistance(const ventilation::Resistance<double>& r);
         private:
             std::chrono::duration<double>   step_;
 

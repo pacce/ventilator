@@ -58,4 +58,14 @@ namespace ventilator {
         emit pressure(p.pressure);
         emit volume(p.volume);
     }
+
+    void
+    Ventilator::compliance(const ventilation::Compliance<double>& c) {
+        lung_ = ventilation::lung::Forward(lung_.resistance(), c);
+    }
+
+    void
+    Ventilator::resistance(const ventilation::Resistance<double>& r) {
+        lung_ = ventilation::lung::Forward(r, lung_.elastance());
+    }
 } // namespace ventilator

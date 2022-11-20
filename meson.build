@@ -6,7 +6,10 @@ dependencies  = [
     dependency('qt5', modules: ['Charts', 'Core', 'Gui', 'Widgets'])
   , dependency('ventilation')
   ]
-includes      = include_directories('source')
+includes      = include_directories(
+    'source'
+  , 'source/lung'
+  )
 sources       = [
     'source/lung-widget.cpp'
   , 'source/main.cpp'
@@ -14,6 +17,9 @@ sources       = [
   , 'source/chart.cpp'
   , 'source/parameter.cpp'
   , 'source/ventilator.cpp'
+
+  , 'source/lung/lung-compliance.cpp'
+  , 'source/lung/lung-resistance.cpp'
   ]
 processed     = qt.preprocess(
     moc_headers         : [
@@ -22,6 +28,9 @@ processed     = qt.preprocess(
       , 'source/chart.hpp'
       , 'source/parameter.hpp'
       , 'source/ventilator.hpp'
+
+      , 'source/lung/lung-compliance.hpp'
+      , 'source/lung/lung-resistance.hpp'
       ]
   , include_directories : includes
   )
