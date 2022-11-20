@@ -13,7 +13,6 @@ namespace ventilator {
     using Peak      = ventilation::pressure::Peak<double>;
     using Volume    = ventilation::Volume<double>;
     using Packet    = ventilation::Packet<double>;
-
     using duration  = std::chrono::duration<double>;
 
     Engine::Engine(QWidget * parent)
@@ -22,11 +21,8 @@ namespace ventilator {
         , lung_(Resistance(50.0), Compliance(30.0e-3))
         , cycle_(duration(0.6), duration(2.4))
     {
-        ventilator_ = std::make_unique<ventilation::modes::VCV<double>>(
-                  PEEP(5.0)
-                , Flow(1.0)
-                , cycle_
-                );
+        ventilator_ = ventilation::modes::VCV<double>(PEEP(5.0), Flow(1.0), cycle_);
+        mode_       = ventilation::modes::Names::VCV;
     }
 
     Engine::~Engine() {}
@@ -39,7 +35,14 @@ namespace ventilator {
         std::vector<Packet> ps;
         while (current <= total) {
             current += step_;
-            ps.push_back(ventilator_->operator()(lung_, step_));
+            switch(mode_) {
+                case ventilation::modes::Names::EMPTY:
+                { break; }
+                case ventilation::modes::Names::PCV:
+                { ps.push_back(std::get<1>(ventilator_)(lung_, step_)); break; }
+                case ventilation::modes::Names::VCV:
+                { ps.push_back(std::get<2>(ventilator_)(lung_, step_)); break; }
+            }
         }
         Packet p = ventilation::mean(ps);
 
@@ -60,6 +63,13 @@ namespace ventilator {
 
     void
     Engine::peep(const ventilation::PEEP<double>& peep) {
-        ventilator_->set(peep);
+        switch(mode_) {
+            case ventilation::modes::Names::EMPTY:
+            { break; }
+            case ventilation::modes::Names::PCV:
+            { std::get<1>(ventilator_).set(peep); break; }
+            case ventilation::modes::Names::VCV:
+            { std::get<2>(ventilator_).set(peep); break; }
+        }
     }
 } // namespace ventilator

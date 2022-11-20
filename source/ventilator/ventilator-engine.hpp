@@ -3,7 +3,7 @@
 
 #include <chrono>
 #include <QWidget>
-#include <memory>
+#include <variant>
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
@@ -26,7 +26,8 @@ namespace ventilator {
 
             ventilation::lung::Forward<double>  lung_;
             ventilation::cycle::Cycle<double>   cycle_;
-            std::unique_ptr<ventilation::modes::VCV<double>> ventilator_;
+            ventilation::Modes<double>          ventilator_;
+            ventilation::modes::Names           mode_;
     };
 } // namespace ventilator
 
