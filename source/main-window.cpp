@@ -21,13 +21,8 @@ Ventilator::Ventilator(QWidget * parent)
 
     peep_       = new ventilator::PEEP;
 
-    flow_->set_yrange(-0.5, 0.5);
     flow_->set_title("Flow (L/s)");
-
-    pressure_->set_yrange(0, 30.0);
     pressure_->set_title("Pressure (cmH<sub>2</sub>O)");
-
-    volume_->set_yrange(0, 0.6);
     volume_->set_title("Volume (L)");
 
     QVBoxLayout * layout = new QVBoxLayout;

@@ -10,6 +10,8 @@ namespace ventilator {
         , series_(new QLineSeries)
         , counter_(0)
         , samples_(2000)
+        , y_max(0)
+        , y_min(0)
     {
         QChartView * view = new QChartView(chart_);
 
@@ -21,6 +23,7 @@ namespace ventilator {
         layout->addWidget(view);
 
         this->set_xrange(counter_, samples_);
+        this->set_yrange(y_min, y_max);
     }
 
     Chart::~Chart() {}
@@ -79,6 +82,20 @@ namespace ventilator {
             vs_[counter_] = sample;
         }
         series_->replace(vs_);
+        scale_max_range(value);
+
         counter_ = (counter_ + 1) % samples_;
+    }
+
+    void
+    Chart::scale_max_range(float value) {
+        if ((y_max < value) || (y_min > value)) {
+            if (y_max < value) {
+                y_max = value;
+            } else {
+                y_min = value;
+            }
+            set_yrange(y_min, y_max);
+        }
     }
 } // namespace ventilator
