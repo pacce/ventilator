@@ -15,7 +15,8 @@ namespace ventilator {
         signals:
             void pressure(const ventilation::Pressure<double>& p);
             void flow(const ventilation::Flow<double>& f);
-            void volume(const ventilation::Volume<double>& f);
+            void volume(const ventilation::Volume<double>& v);
+            void packet(const ventilation::Packet<double>& packet);
         public slots:
             void step();
             void compliance(const ventilation::Compliance<double>& c);

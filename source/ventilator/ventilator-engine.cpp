@@ -46,9 +46,11 @@ namespace ventilator {
         }
         Packet p = ventilation::mean(ps);
 
-        emit flow(p.flow);
         emit pressure(p.pressure);
+        emit flow(p.flow);
         emit volume(p.volume);
+
+        emit packet(p);
     }
 
     void
