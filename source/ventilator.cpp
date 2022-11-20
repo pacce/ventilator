@@ -22,8 +22,18 @@ namespace ventilator {
         , step_(100us)
         , lung_(Resistance(50.0), Compliance(30.0e-3))
         , cycle_(duration(0.6), duration(2.4))
-        , ventilator_(PEEP(5.0), Peak(20.0), cycle_)
-    {}
+    {
+        // ventilator_ = std::make_unique<ventilation::modes::PCV<double>>(
+        //           PEEP(5.0)
+        //         , Peak(20.0)
+        //         , cycle_
+        //         );
+        ventilator_ = std::make_unique<ventilation::modes::VCV<double>>(
+                  PEEP(5.0)
+                , Flow(1.0)
+                , cycle_
+                );
+    }
 
     Ventilator::~Ventilator() {}
 
@@ -35,7 +45,7 @@ namespace ventilator {
         std::vector<Packet> ps;
         while (current <= total) {
             current += step_;
-            ps.push_back(ventilator_(lung_, step_));
+            ps.push_back(ventilator_->operator()(lung_, step_));
         }
         double den  = 1.0 / static_cast<double>(ps.size());
         Packet p  = std::accumulate(
