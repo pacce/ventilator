@@ -14,7 +14,6 @@ namespace ventilator {
         private:
             QDoubleValidator * validator_;
     };
-
 } // namespace ventilator
 
 #endif // VENTILATOR_PARAMETER_HPP__

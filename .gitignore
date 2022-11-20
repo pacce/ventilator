@@ -34,3 +34,6 @@
 # clangd
 .cache
 compile_commands.json
+
+# meson
+subproject/**/

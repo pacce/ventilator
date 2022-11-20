@@ -4,7 +4,6 @@
 #include <QVBoxLayout>
 
 namespace ventilator {
-
 Lung::Lung(QWidget * parent)
     : QFrame(parent)
 {
@@ -18,7 +17,5 @@ Lung::Lung(QWidget * parent)
     this->setLayout(layout);
 }
 
-Lung::~Lung()
-{}
-
+Lung::~Lung() {}
 } // namespace ventilator
