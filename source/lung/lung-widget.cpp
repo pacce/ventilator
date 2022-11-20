@@ -1,6 +1,5 @@
 #include "lung-widget.hpp"
 
-#include <iostream>
 #include <QFormLayout>
 
 namespace ventilator {

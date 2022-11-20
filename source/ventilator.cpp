@@ -1,5 +1,4 @@
 #include "ventilator.hpp"
-#include <iostream>
 
 namespace ventilator {
     using namespace std::chrono_literals;

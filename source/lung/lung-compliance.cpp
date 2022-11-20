@@ -1,6 +1,5 @@
 #include "lung-compliance.hpp"
 
-#include <iostream>
 #include <QVBoxLayout>
 
 namespace ventilator {
