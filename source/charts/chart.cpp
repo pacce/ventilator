@@ -4,6 +4,7 @@
 #include <QVBoxLayout>
 
 namespace ventilator {
+namespace charts {
     Chart::Chart(QWidget * parent)
         : QWidget(parent)
         , chart_(new QChart)
@@ -117,4 +118,5 @@ namespace ventilator {
         y_max = points.last().y();
         set_yrange(y_min, y_max);
     }
+} // namespace charts
 } // namespace ventilator

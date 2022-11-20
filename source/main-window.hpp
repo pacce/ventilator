@@ -10,7 +10,7 @@
 
 #include <ventilation/ventilation.hpp>
 
-#include "chart.hpp"
+#include "charts.hpp"
 #include "lung.hpp"
 #include "ventilator.hpp"
 
@@ -20,9 +20,7 @@ class Ventilator : public QMainWindow {
         Ventilator(QWidget * parent = 0);
         ~Ventilator();
     private:
-        ventilator::Chart * flow_;
-        ventilator::Chart * pressure_;
-        ventilator::Chart * volume_;
+        ventilator::charts::Charts * charts_;
 
         ventilator::lung::Lung *    lung_;
         ventilator::Engine *        engine_;

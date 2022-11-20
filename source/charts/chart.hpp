@@ -9,6 +9,7 @@
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
+namespace charts{
     using namespace QtCharts;
 
     class Chart : public QWidget {
@@ -43,6 +44,7 @@ namespace ventilator {
             qreal y_max;
             qreal y_min;
     };
+} // namespace charts
 } // namespace ventilator
 
 #endif //  VENTILATOR_CHART_HPP__
