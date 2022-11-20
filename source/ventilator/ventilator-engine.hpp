@@ -20,12 +20,13 @@ namespace ventilator {
             void step();
             void compliance(const ventilation::Compliance<double>& c);
             void resistance(const ventilation::Resistance<double>& r);
+            void peep(const ventilation::PEEP<double>& peep);
         private:
             std::chrono::duration<double>   step_;
 
             ventilation::lung::Forward<double>  lung_;
             ventilation::cycle::Cycle<double>   cycle_;
-            std::unique_ptr<ventilation::modes::Base<double>> ventilator_;
+            std::unique_ptr<ventilation::modes::VCV<double>> ventilator_;
     };
 } // namespace ventilator
 

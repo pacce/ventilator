@@ -17,6 +17,9 @@ Ventilator::Ventilator(QWidget * parent)
     volume_     = new ventilator::Chart;
     
     lung_       = new ventilator::lung::Lung;
+    engine_     = new ventilator::Engine;
+
+    peep_       = new ventilator::PEEP;
 
     flow_->set_yrange(-0.5, 0.5);
     flow_->set_title("Flow (L/s)");
@@ -32,12 +35,11 @@ Ventilator::Ventilator(QWidget * parent)
     layout->addWidget(pressure_);
     layout->addWidget(volume_);
     layout->addWidget(lung_);
+    layout->addWidget(peep_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
     setCentralWidget(widget);
-
-    engine_ = new ventilator::Engine;
 
     QTimer * timer = new QTimer(this);
     connect(timer, &QTimer::timeout, engine_, &ventilator::Engine::step);
@@ -59,6 +61,7 @@ Ventilator::Ventilator(QWidget * parent)
             );
     connect(lung_, &ventilator::lung::Lung::compliance, engine_, &ventilator::Engine::compliance);
     connect(lung_, &ventilator::lung::Lung::resistance, engine_, &ventilator::Engine::resistance);
+    connect(peep_, &ventilator::PEEP::peep, engine_, &ventilator::Engine::peep);
     timer->start(10);
 }
 

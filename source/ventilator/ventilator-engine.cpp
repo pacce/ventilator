@@ -57,4 +57,9 @@ namespace ventilator {
     Engine::resistance(const ventilation::Resistance<double>& r) {
         lung_ = ventilation::lung::Forward(r, lung_.elastance());
     }
+
+    void
+    Engine::peep(const ventilation::PEEP<double>& peep) {
+        ventilator_->set(peep);
+    }
 } // namespace ventilator
