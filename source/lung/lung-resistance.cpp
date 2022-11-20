@@ -6,24 +6,11 @@
 namespace ventilator {
 namespace lung {
     Resistance::Resistance(QWidget * parent)
-        : QWidget(parent)
+        : QDoubleSpinBox(parent)
+        , validator_(new QDoubleValidator(1.0, 100.0, 1, this))
     {
-        values_     = new QDoubleSpinBox;
-        validator_  = new QDoubleValidator(1.0, 100.0, 1, values_);
-        values_->setRange(1.0, 100.0);
-
-        QLabel * label = new QLabel("Resistance (cmH<sub>2</sub>O)");
-        QVBoxLayout * layout = new QVBoxLayout;
-        layout->addWidget(label);
-        layout->addWidget(values_);
-
-        this->setLayout(layout);
-        connect(
-                  values_
-                , QOverload<double>::of(&QDoubleSpinBox::valueChanged)
-                , this
-                , &Resistance::update
-                );
+        setRange(1.0, 100.0);
+        connect(this, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Resistance::update);
     }
 
     Resistance::~Resistance() {}

@@ -15,8 +15,8 @@ Ventilator::Ventilator(QWidget * parent)
     flow_       = new ventilator::Chart;
     pressure_   = new ventilator::Chart;
     volume_     = new ventilator::Chart;
-    c_          = new ventilator::lung::Compliance;
-    r_          = new ventilator::lung::Resistance;
+    
+    lung_       = new ventilator::lung::Lung;
 
     flow_->set_yrange(-0.5, 0.5);
     flow_->set_title("Flow (L/s)");
@@ -31,8 +31,7 @@ Ventilator::Ventilator(QWidget * parent)
     layout->addWidget(flow_);
     layout->addWidget(pressure_);
     layout->addWidget(volume_);
-    layout->addWidget(c_);
-    layout->addWidget(r_);
+    layout->addWidget(lung_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
@@ -58,8 +57,8 @@ Ventilator::Ventilator(QWidget * parent)
             , flow_
             , [this](const ventilation::Volume<double>& p) { volume_->update(p); }
             );
-    connect(c_, &ventilator::lung::Compliance::compliance, v, &ventilator::Ventilator::compliance);
-    connect(r_, &ventilator::lung::Resistance::resistance, v, &ventilator::Ventilator::resistance);
+    connect(lung_, &ventilator::lung::Lung::compliance, v, &ventilator::Ventilator::compliance);
+    connect(lung_, &ventilator::lung::Lung::resistance, v, &ventilator::Ventilator::resistance);
     timer->start(10);
 }
 

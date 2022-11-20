@@ -9,7 +9,7 @@
 
 namespace ventilator {
 namespace lung {
-    class Resistance : public QWidget {
+    class Resistance : public QDoubleSpinBox {
         Q_OBJECT
         public:
             Resistance(QWidget * parent = nullptr);
@@ -19,7 +19,6 @@ namespace lung {
         private slots:
             void update(double);
         private:
-            QDoubleSpinBox *    values_;
             QDoubleValidator *  validator_;
     };
 } // namespace lung

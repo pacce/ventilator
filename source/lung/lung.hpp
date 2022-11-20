@@ -3,5 +3,6 @@
 
 #include "lung-compliance.hpp"
 #include "lung-resistance.hpp"
+#include "lung-widget.hpp"
 
 #endif // VENTILATOR_LUNG_HPP__

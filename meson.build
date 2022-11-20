@@ -11,8 +11,7 @@ includes      = include_directories(
   , 'source/lung'
   )
 sources       = [
-    'source/lung-widget.cpp'
-  , 'source/main.cpp'
+    'source/main.cpp'
   , 'source/main-window.cpp'
   , 'source/chart.cpp'
   , 'source/parameter.cpp'
@@ -20,17 +19,18 @@ sources       = [
 
   , 'source/lung/lung-compliance.cpp'
   , 'source/lung/lung-resistance.cpp'
+  , 'source/lung/lung-widget.cpp'
   ]
 processed     = qt.preprocess(
     moc_headers         : [
-        'source/lung-widget.hpp'
-      , 'source/main-window.hpp'
+        'source/main-window.hpp'
       , 'source/chart.hpp'
       , 'source/parameter.hpp'
       , 'source/ventilator.hpp'
 
       , 'source/lung/lung-compliance.hpp'
       , 'source/lung/lung-resistance.hpp'
+      , 'source/lung/lung-widget.hpp'
       ]
   , include_directories : includes
   )
