@@ -3,7 +3,7 @@
 
 #include <chrono>
 #include <QWidget>
-#include <memory>
+#include <variant>
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
@@ -15,7 +15,8 @@ namespace ventilator {
         signals:
             void pressure(const ventilation::Pressure<double>& p);
             void flow(const ventilation::Flow<double>& f);
-            void volume(const ventilation::Volume<double>& f);
+            void volume(const ventilation::Volume<double>& v);
+            void packet(const ventilation::Packet<double>& packet);
         public slots:
             void step();
             void compliance(const ventilation::Compliance<double>& c);
@@ -26,7 +27,8 @@ namespace ventilator {
 
             ventilation::lung::Forward<double>  lung_;
             ventilation::cycle::Cycle<double>   cycle_;
-            std::unique_ptr<ventilation::modes::VCV<double>> ventilator_;
+            ventilation::Modes<double>          ventilator_;
+            ventilation::modes::Names           mode_;
     };
 } // namespace ventilator
 
