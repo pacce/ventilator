@@ -18,7 +18,7 @@ namespace lung {
     void
     Compliance::update(double value) {
         try {
-            ventilation::Compliance c(value);
+            ventilation::Compliance c(value * 1e-3);
             emit(compliance(c));
         } catch (const std::exception& e) {
         }
