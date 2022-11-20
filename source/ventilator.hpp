@@ -23,9 +23,9 @@ namespace ventilator {
         private:
             std::chrono::duration<double>   step_;
 
-            ventilation::lung::Forward<double>          lung_;
-            ventilation::cycle::Cycle<double>           cycle_;
-            std::unique_ptr<ventilation::Mode<double>>  ventilator_;
+            ventilation::lung::Forward<double>  lung_;
+            ventilation::cycle::Cycle<double>   cycle_;
+            std::unique_ptr<ventilation::modes::Base<double>> ventilator_;
     };
 } // namespace ventilator
 
