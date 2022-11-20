@@ -47,13 +47,8 @@ namespace ventilator {
             current += step_;
             ps.push_back(ventilator_->operator()(lung_, step_));
         }
-        double den  = 1.0 / static_cast<double>(ps.size());
-        Packet p  = std::accumulate(
-                  ps.begin()
-                , ps.end()
-                , Packet()
-                , [=](Packet acc, Packet v) { return (v * den) + acc; }
-                );
+        Packet p = ventilation::mean(ps);
+
         emit flow(p.flow);
         emit pressure(p.pressure);
         emit volume(p.volume);
