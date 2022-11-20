@@ -12,8 +12,8 @@ namespace lung {
         resistance_ = new Resistance;
 
         QFormLayout * layout = new QFormLayout;
-        layout->addRow("Compliance (cmH<sub>2</sub>O)", compliance_);
-        layout->addRow("Resistance (cmH<sub>2</sub>O)", resistance_);
+        layout->addRow("Compliance (mL.cmH<sub>2</sub>O<sup>-1</sup>)", compliance_);
+        layout->addRow("Resistance (cmH<sub>2</sub>O.s.L<sup>-1</sup>)", resistance_);
         setLayout(layout);
 
         connect(compliance_, &Compliance::compliance, this, [this](const ventilation::Compliance<double>& c) { emit compliance(c); });
