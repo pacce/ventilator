@@ -1,6 +1,5 @@
 #include "lung-resistance.hpp"
 
-#include <iostream>
 #include <QVBoxLayout>
 
 namespace ventilator {

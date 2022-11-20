@@ -1,5 +1,5 @@
-#ifndef VENTILATOR_WIDGET_HPP__
-#define VENTILATOR_WIDGET_HPP__
+#ifndef VENTILATOR_ENGINE_HPP__
+#define VENTILATOR_ENGINE_HPP__
 
 #include <chrono>
 #include <QWidget>
@@ -7,11 +7,11 @@
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
-    class Ventilator : public QWidget {
+    class Engine : public QWidget {
         Q_OBJECT
         public:
-            Ventilator(QWidget * parent = 0);
-            ~Ventilator();
+            Engine(QWidget * parent = 0);
+            ~Engine();
         signals:
             void pressure(const ventilation::Pressure<double>& p);
             void flow(const ventilation::Flow<double>& f);
@@ -20,13 +20,14 @@ namespace ventilator {
             void step();
             void compliance(const ventilation::Compliance<double>& c);
             void resistance(const ventilation::Resistance<double>& r);
+            void peep(const ventilation::PEEP<double>& peep);
         private:
             std::chrono::duration<double>   step_;
 
-            ventilation::lung::Forward<double>          lung_;
-            ventilation::cycle::Cycle<double>           cycle_;
-            std::unique_ptr<ventilation::Mode<double>>  ventilator_;
+            ventilation::lung::Forward<double>  lung_;
+            ventilation::cycle::Cycle<double>   cycle_;
+            std::unique_ptr<ventilation::modes::VCV<double>> ventilator_;
     };
 } // namespace ventilator
 
-#endif // VENTILATOR_WIDGET_HPP__
+#endif // VENTILATOR_ENGINE_HPP__
