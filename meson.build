@@ -14,7 +14,6 @@ sources       = [
     'source/main.cpp'
   , 'source/main-window.cpp'
   , 'source/chart.cpp'
-  , 'source/parameter.cpp'
   , 'source/ventilator.cpp'
 
   , 'source/lung/lung-compliance.cpp'
@@ -25,7 +24,6 @@ processed     = qt.preprocess(
     moc_headers         : [
         'source/main-window.hpp'
       , 'source/chart.hpp'
-      , 'source/parameter.hpp'
       , 'source/ventilator.hpp'
 
       , 'source/lung/lung-compliance.hpp'
