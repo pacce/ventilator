@@ -31,6 +31,7 @@ namespace ventilator {
             void update(const ventilation::Volume<float>& p);
         private:
             void update(float value);
+            void scale_max_range(float value);
 
             QChart *            chart_;
             QLineSeries *       series_;
@@ -38,6 +39,8 @@ namespace ventilator {
 
             int counter_;
             int samples_;
+            qreal y_max;
+            qreal y_min;
     };
 } // namespace ventilator
 
