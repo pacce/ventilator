@@ -32,6 +32,7 @@ namespace ventilator {
         private:
             void update(float value);
             void scale_max_range(float value);
+            void auto_scale();
 
             QChart *            chart_;
             QLineSeries *       series_;

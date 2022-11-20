@@ -82,8 +82,11 @@ namespace ventilator {
             vs_[counter_] = sample;
         }
         series_->replace(vs_);
-        scale_max_range(value);
 
+        scale_max_range(value);
+        if (counter_ == 0) {
+            auto_scale();
+        }
         counter_ = (counter_ + 1) % samples_;
     }
 
@@ -97,5 +100,21 @@ namespace ventilator {
             }
             set_yrange(y_min, y_max);
         }
+    }
+
+    void
+    Chart::auto_scale() {
+        auto points = series_->points();
+        std::sort(
+            points.begin()
+            , points.end()
+            , [](const QPointF &p1, const QPointF &p2) {
+                return p1.y() < p2.y();
+            }
+        );
+
+        y_min = points.first().y();
+        y_max = points.last().y();
+        set_yrange(y_min, y_max);
     }
 } // namespace ventilator
