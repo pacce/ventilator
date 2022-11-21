@@ -24,8 +24,7 @@ class Ventilator : public QMainWindow {
 
         ventilator::lung::Lung *    lung_;
         ventilator::Engine *        engine_;
-
-        ventilator::PEEP *  peep_;
+        ventilator::Ventilator *    ventilator_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

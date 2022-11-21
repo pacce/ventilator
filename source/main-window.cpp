@@ -17,12 +17,12 @@ Ventilator::Ventilator(QWidget * parent)
     lung_       = new ventilator::lung::Lung;
     engine_     = new ventilator::Engine;
 
-    peep_       = new ventilator::PEEP;
+    ventilator_ = new ventilator::Ventilator;
 
     QVBoxLayout * layout = new QVBoxLayout;
     layout->addWidget(charts_);
     layout->addWidget(lung_);
-    layout->addWidget(peep_);
+    layout->addWidget(ventilator_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
@@ -38,15 +38,16 @@ Ventilator::Ventilator(QWidget * parent)
             );
     connect(lung_
             , &ventilator::lung::Lung::compliance
-            , engine_, &ventilator::Engine::compliance
+            , engine_
+            , &ventilator::Engine::compliance
             );
     connect(lung_
             , &ventilator::lung::Lung::resistance
             , engine_
             , &ventilator::Engine::resistance
             );
-    connect(peep_
-            , &ventilator::PEEP::peep
+    connect(ventilator_
+            , &ventilator::Ventilator::peep
             , engine_
             , &ventilator::Engine::peep
             );

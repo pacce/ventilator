@@ -3,5 +3,6 @@
 
 #include "ventilator-engine.hpp"
 #include "ventilator-peep.hpp"
+#include "ventilator-widget.hpp"
 
 #endif // VENTILATOR_HPP__
