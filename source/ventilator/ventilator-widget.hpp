@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 
+#include "pcv.hpp"
 #include "spinbox/spinbox-peep.hpp"
 
 namespace ventilator {
@@ -16,9 +17,10 @@ namespace ventilator {
             Ventilator(QWidget * parent = nullptr);
             ~Ventilator();
         signals:
+            void peak(const ventilation::pressure::Peak<double>& p) const;
             void peep(const ventilation::PEEP<double>& p) const;
         private:
-            spinbox::PEEP * peep_;
+            ventilator::pcv::PCV *  pcv_;
     };
 } // namespace ventilator
 

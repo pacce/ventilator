@@ -1,23 +1,20 @@
 #include "ventilator-widget.hpp"
 
-#include <QFormLayout>
+#include <QVBoxLayout>
 
 namespace ventilator {
     Ventilator::Ventilator(QWidget * parent)
         : QGroupBox(parent)
     {
-        peep_ = new spinbox::PEEP;
+        pcv_ = new ventilator::pcv::PCV;
 
-        QFormLayout * layout = new QFormLayout;
-        layout->addRow("PEEP (cmH<sub>2</sub>O)", peep_);
+        QVBoxLayout * layout = new QVBoxLayout;
+        layout->addWidget(pcv_);
         setLayout(layout);
         setTitle("Ventilator");
 
-        connect(peep_
-                , &spinbox::PEEP::peep
-                , this
-                , [this](const ventilation::PEEP<double>& p) { emit peep(p); }
-                );
+        connect(pcv_, &ventilator::pcv::PCV::peep, this, &Ventilator::peep);
+        connect(pcv_, &ventilator::pcv::PCV::peak, this, &Ventilator::peak);
     }
 
     Ventilator::~Ventilator() {}

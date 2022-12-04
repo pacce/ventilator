@@ -15,12 +15,10 @@ Ventilator::Ventilator(QWidget * parent)
     charts_     = new ventilator::charts::Charts;
     engine_     = new ventilator::Engine;
     sidebar_   = new ventilator::sidebar::SideBar;
-    pcv_        = new ventilator::pcv::PCV;
 
     QHBoxLayout * layout = new QHBoxLayout;
     layout->addWidget(sidebar_);
     layout->addWidget(charts_);
-    layout->addWidget(pcv_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
@@ -49,10 +47,11 @@ Ventilator::Ventilator(QWidget * parent)
             , engine_
             , &ventilator::Engine::peep
             );
-// =======
-//     connect(pcv_, &ventilator::pcv::PCV::peep, engine_, &ventilator::Engine::peep);
-//     connect(pcv_, &ventilator::pcv::PCV::peak, engine_, &ventilator::Engine::peak);
-// >>>>>>> 61cbd6f (feat: adds a pcv peep and pressure control)
+    connect(sidebar_
+            , &ventilator::sidebar::SideBar::peak
+            , engine_
+            , &ventilator::Engine::peak
+            );
     timer->start(10);
 }
 

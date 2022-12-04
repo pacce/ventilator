@@ -19,9 +19,10 @@ namespace sidebar {
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
             void peep(const ventilation::PEEP<double>& p) const;
+            void peak(const ventilation::pressure::Peak<double>& p) const;
         private:
-            lung::Lung *             lung_;
-            ventilator::Ventilator * ventilator_;
+            lung::Lung *                lung_;
+            ventilator::Ventilator *    ventilator_;
     };
 } // namespace sidebar
 } // namespace ventilator
