@@ -7,7 +7,7 @@
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 
-#include "ventilator-peep.hpp"
+#include "spinbox/spinbox-peep.hpp"
 
 namespace ventilator {
     class Ventilator : public QFrame {
@@ -18,7 +18,7 @@ namespace ventilator {
         signals:
             void peep(const ventilation::PEEP<double>& p) const;
         private:
-            PEEP * peep_;
+            spinbox::PEEP * peep_;
     };
 } // namespace ventilator
 

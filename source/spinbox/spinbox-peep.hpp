@@ -1,13 +1,12 @@
-#ifndef VENTILATOR_PEEP_HPP__
-#define VENTILATOR_PEEP_HPP__
+#ifndef VENTILATOR_SPINBOX_PEEP_HPP__
+#define VENTILATOR_SPINBOX_PEEP_HPP__
 
 #include <QDoubleValidator>
 #include <QDoubleSpinBox>
-#include <QLabel>
-#include <QWidget>
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
+namespace spinbox {
     class PEEP : public QDoubleSpinBox {
         Q_OBJECT
         public:
@@ -20,6 +19,7 @@ namespace ventilator {
         private:
             QDoubleValidator *  validator_;
     };
+} // namespace spinbox
 } // namespace ventilator
 
-#endif // VENTILATOR_PEEP_HPP__
+#endif // VENTILATOR_SPINBOX_PEEP_HPP__

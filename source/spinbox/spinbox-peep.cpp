@@ -1,6 +1,7 @@
-#include "ventilator-peep.hpp"
+#include "spinbox-peep.hpp"
 
 namespace ventilator {
+namespace spinbox {
     PEEP::PEEP(QWidget * parent)
         : QDoubleSpinBox(parent)
         , validator_(new QDoubleValidator(0.0, 20.0, 1, this))
@@ -19,4 +20,5 @@ namespace ventilator {
         } catch (const std::exception& e) {
         }
     }
+} // namespace spinbox
 } // namespace ventilator
