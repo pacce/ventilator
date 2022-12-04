@@ -5,7 +5,7 @@
 #include <QFrame>
 #include <ventilation/ventilation.hpp>
 
-#include "lung-compliance.hpp"
+#include "spinbox-compliance.hpp"
 #include "spinbox-resistance.hpp"
 
 namespace ventilator {
@@ -19,7 +19,7 @@ namespace lung {
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
         private:
-            Compliance * compliance_;
+            spinbox::Compliance * compliance_;
             spinbox::Resistance * resistance_;
     };
 } // namespace lung

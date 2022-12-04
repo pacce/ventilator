@@ -21,9 +21,9 @@ sources       = [
   , 'source/charts/charts-widget.cpp'
 
 
-  , 'source/lung/lung-compliance.cpp'
   , 'source/lung/lung-widget.cpp'
 
+  , 'source/spinbox/spinbox-compliance.cpp'
   , 'source/spinbox/spinbox-peep.cpp'
   , 'source/spinbox/spinbox-resistance.cpp'
 
@@ -37,9 +37,9 @@ processed     = qt.preprocess(
       , 'source/charts/chart.hpp'
       , 'source/charts/charts-widget.hpp'
 
-      , 'source/lung/lung-compliance.hpp'
       , 'source/lung/lung-widget.hpp'
 
+      , 'source/spinbox/spinbox-compliance.hpp'
       , 'source/spinbox/spinbox-peep.hpp'
       , 'source/spinbox/spinbox-resistance.hpp'
 

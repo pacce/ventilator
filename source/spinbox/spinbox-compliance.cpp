@@ -1,9 +1,9 @@
-#include "lung-compliance.hpp"
+#include "spinbox-compliance.hpp"
 
 #include <QVBoxLayout>
 
 namespace ventilator {
-namespace lung {
+namespace spinbox {
     Compliance::Compliance(QWidget * parent)
         : QDoubleSpinBox(parent)
         , validator_(new QDoubleValidator(1.0, 100.0, 1, this))
@@ -22,5 +22,5 @@ namespace lung {
         } catch (const std::exception& e) {
         }
     }
-} // namespace lung
+} // namespace spinbox
 } // namespace ventilator
