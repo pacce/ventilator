@@ -12,7 +12,6 @@
 
 #include "charts.hpp"
 #include "lung.hpp"
-#include "spinbox.hpp"
 #include "ventilator.hpp"
 
 class Ventilator : public QMainWindow {
@@ -26,7 +25,6 @@ class Ventilator : public QMainWindow {
         ventilator::lung::Lung *    lung_;
         ventilator::Engine *        engine_;
         ventilator::Ventilator *    ventilator_;
-        ventilator::spinbox::PEEP *  peep_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

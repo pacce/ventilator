@@ -18,7 +18,6 @@ Ventilator::Ventilator(QWidget * parent)
     engine_     = new ventilator::Engine;
 
     ventilator_ = new ventilator::Ventilator;
-    peep_       = new ventilator::spinbox::PEEP;
 
     QVBoxLayout * layout = new QVBoxLayout;
     layout->addWidget(charts_);
@@ -47,8 +46,8 @@ Ventilator::Ventilator(QWidget * parent)
             , engine_
             , &ventilator::Engine::resistance
             );
-    connect(peep_
-            , &ventilator::spinbox::PEEP::peep
+    connect(ventilator_
+            , &ventilator::Ventilator::peep
             , engine_
             , &ventilator::Engine::peep
             );
