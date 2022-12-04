@@ -21,8 +21,9 @@ namespace ventilator {
         , lung_(Resistance(50.0), Compliance(30.0e-3))
         , cycle_(duration(0.6), duration(2.4))
     {
-        ventilator_ = ventilation::modes::VCV<double>(PEEP(5.0), Flow(1.0), cycle_);
-        mode_       = ventilation::modes::Names::VCV;
+        // ventilator_ = ventilation::modes::VCV<double>(PEEP(5.0), Flow(1.0), cycle_);
+        ventilator_ = ventilation::modes::PCV<double>(PEEP(5.0), Peak(20.0), cycle_);
+        mode_       = ventilation::modes::Names::PCV;
     }
 
     Engine::~Engine() {}
@@ -72,6 +73,18 @@ namespace ventilator {
             { std::get<1>(ventilator_).set(peep); break; }
             case ventilation::modes::Names::VCV:
             { std::get<2>(ventilator_).set(peep); break; }
+        }
+    }
+
+    void
+    Engine::peak(const ventilation::pressure::Peak<double>& peep) {
+        switch(mode_) {
+            case ventilation::modes::Names::EMPTY:
+            { break; }
+            case ventilation::modes::Names::PCV:
+            { std::get<1>(ventilator_).set(peep); break; }
+            case ventilation::modes::Names::VCV:
+            { break; }
         }
     }
 } // namespace ventilator
