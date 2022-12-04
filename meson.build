@@ -11,7 +11,6 @@ includes      = include_directories(
   , 'source/charts'
   , 'source/lung'
   , 'source/side-bar'
-  , 'source/pcv'
   , 'source/spinbox'
   , 'source/ventilator'
   )
@@ -24,8 +23,6 @@ sources       = [
 
   , 'source/lung/lung-widget.cpp'
 
-  , 'source/pcv/pcv.cpp'
-
   , 'source/side-bar/side-bar-widget.cpp'
 
   , 'source/spinbox/spinbox-compliance.cpp'
@@ -35,6 +32,7 @@ sources       = [
 
   , 'source/ventilator/ventilator-engine.cpp'
   , 'source/ventilator/ventilator-widget.cpp'
+  , 'source/ventilator/ventilator-modes/ventilator-pcv.cpp'
   ]
 processed     = qt.preprocess(
     moc_headers         : [
@@ -45,8 +43,6 @@ processed     = qt.preprocess(
 
       , 'source/lung/lung-widget.hpp'
 
-      , 'source/pcv/pcv.hpp'
-
       , 'source/side-bar/side-bar-widget.hpp'
 
       , 'source/spinbox/spinbox-compliance.hpp'
@@ -56,6 +52,7 @@ processed     = qt.preprocess(
 
       , 'source/ventilator/ventilator-engine.hpp'
       , 'source/ventilator/ventilator-widget.hpp'
+      , 'source/ventilator/ventilator-modes/ventilator-pcv.hpp'
       ]
   , include_directories : includes
   )

@@ -1,5 +1,5 @@
-#ifndef VENTILATOR_PCV_HPP__
-#define VENTILATOR_PCV_HPP__
+#ifndef VENTILATOR_VENTILATOR_MODES_PCV_HPP__
+#define VENTILATOR_VENTILATOR_MODES_PCV_HPP__
 
 #include <QWidget>
 
@@ -7,7 +7,7 @@
 #include "spinbox-pressure-peak.hpp"
 
 namespace ventilator {
-namespace pcv {
+namespace modes {
     class PCV : public QWidget {
         Q_OBJECT
         public:
@@ -20,7 +20,7 @@ namespace pcv {
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;
     };
-} // namespace pcv
+} // namespace modes
 } // namespace ventilator
 
-#endif // VENTILATOR_PCV_HPP__
+#endif // VENTILATOR_VENTILATOR_MODES_PCV_HPP__

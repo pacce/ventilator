@@ -7,7 +7,7 @@
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 
-#include "pcv.hpp"
+#include "ventilator-modes/ventilator-modes.hpp"
 #include "spinbox/spinbox-peep.hpp"
 
 namespace ventilator {
@@ -20,7 +20,7 @@ namespace ventilator {
             void peak(const ventilation::pressure::Peak<double>& p) const;
             void peep(const ventilation::PEEP<double>& p) const;
         private:
-            ventilator::pcv::PCV *  pcv_;
+            ventilator::modes::PCV *  pcv_;
     };
 } // namespace ventilator
 

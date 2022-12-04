@@ -1,8 +1,8 @@
-#include "pcv.hpp"
+#include "ventilator-pcv.hpp"
 #include <QFormLayout>
 
 namespace ventilator {
-namespace pcv {
+namespace modes {
     PCV::PCV(QWidget * parent) : QWidget(parent) {
         peep_ = new spinbox::PEEP;
         peak_ = new spinbox::pressure::Peak;
@@ -16,5 +16,5 @@ namespace pcv {
         connect(peak_, &spinbox::pressure::Peak::pressure, this, &PCV::peak);
     }
     PCV::~PCV() {}
-} // namesp:ace pcv
+} // namesp:ace modes
 } // namespace ventilator
