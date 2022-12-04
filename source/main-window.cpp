@@ -5,7 +5,7 @@
 #include <QChartView>
 #include <QTimer>
 #include <QValueAxis>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 #include "ventilator.hpp"
 
@@ -16,9 +16,9 @@ Ventilator::Ventilator(QWidget * parent)
     engine_     = new ventilator::Engine;
     side_bar_   = new ventilator::sidebar::SideBar;
 
-    QVBoxLayout * layout = new QVBoxLayout;
-    layout->addWidget(charts_);
+    QHBoxLayout * layout = new QHBoxLayout;
     layout->addWidget(side_bar_);
+    layout->addWidget(charts_);
 
     QWidget * widget = new QWidget;
     widget->setLayout(layout);
