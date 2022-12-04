@@ -22,7 +22,7 @@ class Ventilator : public QMainWindow {
         ventilator::charts::Charts * charts_;
 
         ventilator::Engine *           engine_;
-        ventilator::sidebar::SideBar * side_bar_;
+        ventilator::sidebar::SideBar * sidebar_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__
