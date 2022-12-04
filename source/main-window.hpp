@@ -11,7 +11,7 @@
 #include <ventilation/ventilation.hpp>
 
 #include "charts.hpp"
-#include "lung.hpp"
+#include "side-bar.hpp"
 #include "ventilator.hpp"
 
 class Ventilator : public QMainWindow {
@@ -22,9 +22,9 @@ class Ventilator : public QMainWindow {
     private:
         ventilator::charts::Charts * charts_;
 
-        ventilator::lung::Lung *    lung_;
-        ventilator::Engine *        engine_;
-        ventilator::Ventilator *    ventilator_;
+        ventilator::Engine *           engine_;
+        ventilator::sidebar::SideBar * side_bar_;
+        ventilator::Ventilator *       ventilator_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

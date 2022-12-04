@@ -13,15 +13,13 @@ Ventilator::Ventilator(QWidget * parent)
     : QMainWindow(parent)
 {
     charts_     = new ventilator::charts::Charts;
-    
-    lung_       = new ventilator::lung::Lung;
     engine_     = new ventilator::Engine;
-
+    side_bar_   = new ventilator::sidebar::SideBar;
     ventilator_ = new ventilator::Ventilator;
 
     QVBoxLayout * layout = new QVBoxLayout;
     layout->addWidget(charts_);
-    layout->addWidget(lung_);
+    layout->addWidget(side_bar_);
     layout->addWidget(ventilator_);
 
     QWidget * widget = new QWidget;
@@ -36,13 +34,13 @@ Ventilator::Ventilator(QWidget * parent)
             , charts_
             , [this](const ventilation::Packet<double>& p) { charts_->update(p); }
             );
-    connect(lung_
-            , &ventilator::lung::Lung::compliance
+    connect(side_bar_
+            , &ventilator::sidebar::SideBar::compliance
             , engine_
             , &ventilator::Engine::compliance
             );
-    connect(lung_
-            , &ventilator::lung::Lung::resistance
+    connect(side_bar_
+            , &ventilator::sidebar::SideBar::resistance
             , engine_
             , &ventilator::Engine::resistance
             );
