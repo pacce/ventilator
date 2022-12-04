@@ -6,6 +6,7 @@
 #include <QWidget>
 
 #include "lung.hpp"
+#include "ventilator.hpp"
 
 namespace ventilator {
 namespace sidebar {
@@ -17,8 +18,10 @@ namespace sidebar {
         signals:
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
+            void peep(const ventilation::PEEP<double>& p) const;
         private:
-            lung::Lung * lung_;
+            lung::Lung *             lung_;
+            ventilator::Ventilator * ventilator_;
     };
 } // namespace sidebar
 } // namespace ventilator
