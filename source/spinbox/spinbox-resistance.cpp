@@ -1,9 +1,9 @@
-#include "lung-resistance.hpp"
+#include "spinbox-resistance.hpp"
 
 #include <QVBoxLayout>
 
 namespace ventilator {
-namespace lung {
+namespace spinbox {
     Resistance::Resistance(QWidget * parent)
         : QDoubleSpinBox(parent)
         , validator_(new QDoubleValidator(1.0, 100.0, 1, this))
@@ -22,5 +22,5 @@ namespace lung {
         } catch (const std::exception& e) {
         }
     }
-} // namespace lung
+} // namespace spinbox
 } // namespace ventilator

@@ -1,14 +1,12 @@
-#ifndef VENTILATOR_LUNG_RESISTANCE_HPP__
-#define VENTILATOR_LUNG_RESISTANCE_HPP__
+#ifndef VENTILATOR_SPINBOX_RESISTANCE_HPP__
+#define VENTILATOR_SPINBOX_RESISTANCE_HPP__
 
 #include <QDoubleValidator>
 #include <QDoubleSpinBox>
-#include <QLabel>
-#include <QWidget>
 #include <ventilation/ventilation.hpp>
 
 namespace ventilator {
-namespace lung {
+namespace spinbox {
     class Resistance : public QDoubleSpinBox {
         Q_OBJECT
         public:
@@ -21,7 +19,7 @@ namespace lung {
         private:
             QDoubleValidator *  validator_;
     };
-} // namespace lung
+} // namespace spinbox
 } // namespace ventilator
 
-#endif // VENTILATOR_LUNG_RESISTANCE_HPP__
+#endif // VENTILATOR_SPINBOX_RESISTANCE_HPP__

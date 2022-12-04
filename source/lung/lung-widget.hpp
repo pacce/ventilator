@@ -3,12 +3,10 @@
 
 #include <cstdint>
 #include <QFrame>
-#include <QLabel>
-#include <QWidget>
 #include <ventilation/ventilation.hpp>
 
 #include "lung-compliance.hpp"
-#include "lung-resistance.hpp"
+#include "spinbox-resistance.hpp"
 
 namespace ventilator {
 namespace lung {
@@ -22,7 +20,7 @@ namespace lung {
             void resistance(const ventilation::Resistance<double>& r) const;
         private:
             Compliance * compliance_;
-            Resistance * resistance_;
+            spinbox::Resistance * resistance_;
     };
 } // namespace lung
 } // namespace ventilator

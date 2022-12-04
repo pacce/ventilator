@@ -8,7 +8,7 @@ namespace lung {
         : QFrame(parent)
     {
         compliance_ = new Compliance;
-        resistance_ = new Resistance;
+        resistance_ = new spinbox::Resistance;
 
         QFormLayout * layout = new QFormLayout;
         layout->addRow("Compliance (mL.cmH<sub>2</sub>O<sup>-1</sup>)", compliance_);
@@ -16,7 +16,7 @@ namespace lung {
         setLayout(layout);
 
         connect(compliance_, &Compliance::compliance, this, [this](const ventilation::Compliance<double>& c) { emit compliance(c); });
-        connect(resistance_, &Resistance::resistance, this, [this](const ventilation::Resistance<double>& c) { emit resistance(c); });
+        connect(resistance_, &spinbox::Resistance::resistance, this, [this](const ventilation::Resistance<double>& c) { emit resistance(c); });
     }
 
     Lung::~Lung() {}

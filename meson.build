@@ -22,10 +22,10 @@ sources       = [
 
 
   , 'source/lung/lung-compliance.cpp'
-  , 'source/lung/lung-resistance.cpp'
   , 'source/lung/lung-widget.cpp'
 
   , 'source/spinbox/spinbox-peep.cpp'
+  , 'source/spinbox/spinbox-resistance.cpp'
 
   , 'source/ventilator/ventilator-engine.cpp'
   , 'source/ventilator/ventilator-widget.cpp'
@@ -38,10 +38,10 @@ processed     = qt.preprocess(
       , 'source/charts/charts-widget.hpp'
 
       , 'source/lung/lung-compliance.hpp'
-      , 'source/lung/lung-resistance.hpp'
       , 'source/lung/lung-widget.hpp'
 
       , 'source/spinbox/spinbox-peep.hpp'
+      , 'source/spinbox/spinbox-resistance.hpp'
 
       , 'source/ventilator/ventilator-engine.hpp'
       , 'source/ventilator/ventilator-widget.hpp'
