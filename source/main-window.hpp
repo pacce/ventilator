@@ -12,7 +12,7 @@
 
 #include "charts.hpp"
 #include "lung.hpp"
-#include "side-bar.hpp"
+#include "sidebar.hpp"
 #include "spinbox.hpp"
 #include "ventilator.hpp"
 
@@ -25,7 +25,7 @@ class Ventilator : public QMainWindow {
         ventilator::charts::Charts * charts_;
 
         ventilator::Engine *           engine_;
-        ventilator::sidebar::SideBar * sidebar_;
+        ventilator::sidebar::Sidebar * sidebar_;
 };
 
 #endif // VENTILATIOR_WINDOW_HPP__

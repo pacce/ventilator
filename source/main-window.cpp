@@ -14,7 +14,7 @@ Ventilator::Ventilator(QWidget * parent)
 {
     charts_     = new ventilator::charts::Charts;
     engine_     = new ventilator::Engine;
-    sidebar_   = new ventilator::sidebar::SideBar;
+    sidebar_   = new ventilator::sidebar::Sidebar;
 
     QHBoxLayout * layout = new QHBoxLayout;
     layout->addWidget(sidebar_);
@@ -33,22 +33,22 @@ Ventilator::Ventilator(QWidget * parent)
             , [this](const ventilation::Packet<double>& p) { charts_->update(p); }
             );
     connect(sidebar_
-            , &ventilator::sidebar::SideBar::compliance
+            , &ventilator::sidebar::Sidebar::compliance
             , engine_
             , &ventilator::Engine::compliance
             );
     connect(sidebar_
-            , &ventilator::sidebar::SideBar::resistance
+            , &ventilator::sidebar::Sidebar::resistance
             , engine_
             , &ventilator::Engine::resistance
             );
     connect(sidebar_
-            , &ventilator::sidebar::SideBar::peep
+            , &ventilator::sidebar::Sidebar::peep
             , engine_
             , &ventilator::Engine::peep
             );
     connect(sidebar_
-            , &ventilator::sidebar::SideBar::peak
+            , &ventilator::sidebar::Sidebar::peak
             , engine_
             , &ventilator::Engine::peak
             );

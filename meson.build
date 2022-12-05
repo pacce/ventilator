@@ -10,7 +10,7 @@ includes      = include_directories(
     'source'
   , 'source/charts'
   , 'source/lung'
-  , 'source/side-bar'
+  , 'source/sidebar'
   , 'source/spinbox'
   , 'source/ventilator'
   )
@@ -23,7 +23,7 @@ sources       = [
 
   , 'source/lung/lung-widget.cpp'
 
-  , 'source/side-bar/side-bar-widget.cpp'
+  , 'source/sidebar/sidebar-widget.cpp'
 
   , 'source/spinbox/spinbox-compliance.cpp'
   , 'source/spinbox/spinbox-peep.cpp'
@@ -43,7 +43,7 @@ processed     = qt.preprocess(
 
       , 'source/lung/lung-widget.hpp'
 
-      , 'source/side-bar/side-bar-widget.hpp'
+      , 'source/sidebar/sidebar-widget.hpp'
 
       , 'source/spinbox/spinbox-compliance.hpp'
       , 'source/spinbox/spinbox-peep.hpp'

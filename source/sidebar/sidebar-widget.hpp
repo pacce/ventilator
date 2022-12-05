@@ -10,11 +10,11 @@
 
 namespace ventilator {
 namespace sidebar {
-    class SideBar : public QFrame {
+    class Sidebar : public QFrame {
         Q_OBJECT
         public:
-            SideBar(QWidget * parent = nullptr);
-            ~SideBar();
+            Sidebar(QWidget * parent = nullptr);
+            ~Sidebar();
         signals:
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
