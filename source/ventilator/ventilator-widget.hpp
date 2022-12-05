@@ -20,7 +20,7 @@ namespace ventilator {
             void peak(const ventilation::pressure::Peak<double>& p) const;
             void peep(const ventilation::PEEP<double>& p) const;
         private:
-            ventilator::modes::PCV *  pcv_;
+            ventilator::modes::PCV *    pcv_;
     };
 } // namespace ventilator
 

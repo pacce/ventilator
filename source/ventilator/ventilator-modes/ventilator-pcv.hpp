@@ -1,6 +1,7 @@
 #ifndef VENTILATOR_VENTILATOR_MODES_PCV_HPP__
 #define VENTILATOR_VENTILATOR_MODES_PCV_HPP__
 
+#include <QLabel>
 #include <QWidget>
 
 #include "spinbox-peep.hpp"
@@ -17,6 +18,7 @@ namespace modes {
             void peep(ventilation::PEEP<double>) const;
             void peak(ventilation::pressure::Peak<double>) const;
         private:
+            QLabel *                    label_;
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;
     };
