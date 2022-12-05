@@ -21,6 +21,7 @@ namespace ventilator {
             void peep(const ventilation::PEEP<double>& p) const;
         private:
             ventilator::modes::PCV *    pcv_;
+            ventilator::modes::VCV *    vcv_;
     };
 } // namespace ventilator
 

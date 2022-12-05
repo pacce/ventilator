@@ -33,6 +33,7 @@ sources       = [
   , 'source/ventilator/ventilator-engine.cpp'
   , 'source/ventilator/ventilator-widget.cpp'
   , 'source/ventilator/ventilator-modes/ventilator-pcv.cpp'
+  , 'source/ventilator/ventilator-modes/ventilator-vcv.cpp'
   ]
 processed     = qt.preprocess(
     moc_headers         : [
@@ -53,6 +54,7 @@ processed     = qt.preprocess(
       , 'source/ventilator/ventilator-engine.hpp'
       , 'source/ventilator/ventilator-widget.hpp'
       , 'source/ventilator/ventilator-modes/ventilator-pcv.hpp'
+      , 'source/ventilator/ventilator-modes/ventilator-vcv.hpp'
       ]
   , include_directories : includes
   )
