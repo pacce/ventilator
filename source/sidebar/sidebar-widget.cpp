@@ -1,6 +1,7 @@
 #include "sidebar-widget.hpp"
 
 #include <QVBoxLayout>
+#include "ventilator-configuration.hpp"
 
 namespace ventilator {
 namespace sidebar {
@@ -9,7 +10,7 @@ namespace sidebar {
     {
         setMaximumWidth(500);
 
-        lung_ = new lung::Lung;
+        lung_ = new lung::Lung(configuration::COMPLIANCE, configuration::RESISTANCE);
         ventilator_ = new ventilator::Ventilator;
 
         QVBoxLayout * layout = new QVBoxLayout;

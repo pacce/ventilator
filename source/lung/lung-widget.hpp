@@ -13,6 +13,11 @@ namespace lung {
     class Lung : public QGroupBox {
         Q_OBJECT
         public:
+            Lung(
+                      const ventilation::Compliance<double>& c
+                    , const ventilation::Resistance<double>& r
+                    , QWidget * parent = nullptr
+                    );
             Lung(QWidget * parent = nullptr);
             ~Lung();
         signals:

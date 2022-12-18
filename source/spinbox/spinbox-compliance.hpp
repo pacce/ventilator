@@ -11,6 +11,7 @@ namespace spinbox {
         Q_OBJECT
         public:
             Compliance(QWidget * parent = nullptr);
+            Compliance(const ventilation::Compliance<double>& c, QWidget * parent = nullptr);
             ~Compliance();
         signals:
             void compliance(ventilation::Compliance<double>) const;

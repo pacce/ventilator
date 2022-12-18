@@ -1,5 +1,7 @@
 #include "ventilator-engine.hpp"
+
 #include <iostream>
+#include "ventilator-configuration.hpp"
 
 namespace ventilator {
     using namespace std::chrono_literals;
@@ -22,7 +24,7 @@ namespace ventilator {
     Engine::Engine(QWidget * parent)
         : QWidget(parent)
         , step_(100us)
-        , lung_(Resistance(50.0), Compliance(30.0e-3))
+        , lung_(configuration::RESISTANCE, configuration::COMPLIANCE)
         , frequency_(Frequency(0.5))
         , ratio_(1.0, 4.0)
         , cycle_(frequency_, ratio_)

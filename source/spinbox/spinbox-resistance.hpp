@@ -11,6 +11,7 @@ namespace spinbox {
         Q_OBJECT
         public:
             Resistance(QWidget * parent = nullptr);
+            Resistance(const ventilation::Resistance<double>& r, QWidget * parent = nullptr);
             ~Resistance();
         signals:
             void resistance(ventilation::Resistance<double>) const;
