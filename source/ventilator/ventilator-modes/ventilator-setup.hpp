@@ -28,10 +28,10 @@ namespace setup {
     struct VCV {
         PEEP<Precision>         peep;
         // Flow<Precision>         peak;
-        // Frequency<Precision>    frequency;
-        // Ratio<Precision>        ratio;
+        Frequency<Precision>    frequency;
+        Ratio<Precision>        ratio;
 
-        // Cycle<Precision> cycle() const { return Cycle<Precision>(frequency, ratio); }
+        Cycle<Precision> cycle() const { return Cycle<Precision>(frequency, ratio); }
     };
 } // namespace setup
 } // namespace ventilator

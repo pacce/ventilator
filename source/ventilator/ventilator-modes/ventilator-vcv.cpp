@@ -13,10 +13,14 @@ namespace modes {
         setContentsMargins(0, 0, 0, 0);
         setMinimumHeight(0);
 
-        peep_   = new spinbox::PEEP;
+        peep_       = new spinbox::PEEP;
+        frequency_  = new spinbox::Frequency;
+        ratio_      = new spinbox::Ratio;
 
         QFormLayout * form = new QFormLayout;
         form->addRow("Positive End-Expiratory Pressure (cmH<sub>2</sub>O)", peep_);
+        form->addRow("Respiratory Rate (bpm)", frequency_);
+        form->addRow("Inspiratory:Expiratory Ratio", ratio_);
 
         QVBoxLayout * layout = new QVBoxLayout;
         layout->addLayout(form);
@@ -25,6 +29,18 @@ namespace modes {
         connect(
                   peep_
                 , &spinbox::PEEP::peep
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
+        connect(
+                  frequency_
+                , &spinbox::Frequency::frequency
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
+        connect(
+                  ratio_
+                , &spinbox::Ratio::ratio
                 , this
                 , [this](){ emit value(this->setup()); }
                 );
@@ -62,8 +78,8 @@ namespace modes {
         return ventilator::setup::VCV<double>(
                   peep_->get()
                 // , peak_->get()
-                // , frequency_->get()
-                // , ratio_->get()
+                , frequency_->get()
+                , ratio_->get()
                 );
     }
 } // namespace modes

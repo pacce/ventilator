@@ -83,6 +83,9 @@ namespace ventilator {
     Engine::vcv(const ventilator::setup::VCV<double>& setup) {
         mode_   = ventilation::modes::Names::VCV;
 
+        ratio_  = setup.ratio;
+        cycle_  = setup.cycle();
+
         ventilator_ = ventilation::modes::VCV<double>(setup.peep, Flow(1.0), cycle_);
     }
 } // namespace ventilator

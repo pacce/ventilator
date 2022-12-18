@@ -4,8 +4,10 @@
 #include <QPropertyAnimation>
 #include <QWidget>
 
+#include "spinbox-frequency.hpp"
 #include "spinbox-peep.hpp"
 #include "spinbox-pressure-peak.hpp"
+#include "spinbox-ratio.hpp"
 
 #include "ventilator-setup.hpp"
 
@@ -25,6 +27,9 @@ namespace modes {
             void value(const ventilator::setup::VCV<double>) const;
         private:
             spinbox::PEEP *             peep_;
+            spinbox::Frequency *        frequency_;
+            spinbox::Ratio *            ratio_;
+
             QPropertyAnimation *        animation_;
             bool                        is_expanded_;
     };
