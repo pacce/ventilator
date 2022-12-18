@@ -2,7 +2,7 @@
 #define VENTILATION_LUNG_WIDGET_HPP__
 
 #include <cstdint>
-#include <QFrame>
+#include <QGroupBox>
 #include <ventilation/ventilation.hpp>
 
 #include "spinbox-compliance.hpp"
@@ -10,7 +10,7 @@
 
 namespace ventilator {
 namespace lung {
-    class Lung : public QFrame {
+    class Lung : public QGroupBox {
         Q_OBJECT
         public:
             Lung(QWidget * parent = nullptr);

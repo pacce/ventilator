@@ -5,7 +5,7 @@
 namespace ventilator {
 namespace lung {
     Lung::Lung(QWidget * parent)
-        : QFrame(parent)
+        : QGroupBox(parent)
     {
         compliance_ = new spinbox::Compliance;
         resistance_ = new spinbox::Resistance;
@@ -14,6 +14,7 @@ namespace lung {
         layout->addRow("Compliance (mL.cmH<sub>2</sub>O<sup>-1</sup>)", compliance_);
         layout->addRow("Resistance (cmH<sub>2</sub>O.s.L<sup>-1</sup>)", resistance_);
         setLayout(layout);
+        setTitle("Lung");
 
         connect(
                   compliance_
