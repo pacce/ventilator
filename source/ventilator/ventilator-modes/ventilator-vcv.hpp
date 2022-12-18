@@ -1,9 +1,7 @@
 #ifndef VENTILATOR_VENTILATOR_MODES_VCV_HPP__
 #define VENTILATOR_VENTILATOR_MODES_VCV_HPP__
 
-#include <QLabel>
 #include <QPropertyAnimation>
-#include <QScrollArea>
 #include <QWidget>
 
 #include "spinbox-peep.hpp"
@@ -11,7 +9,7 @@
 
 namespace ventilator {
 namespace modes {
-    class VCV : public QScrollArea {
+    class VCV : public QWidget {
         Q_OBJECT
         public:
             VCV(QWidget * parent = nullptr);
@@ -22,7 +20,6 @@ namespace modes {
         signals:
             void peep(ventilation::PEEP<double>) const;
         private:
-            QLabel *                    label_;
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;
             QPropertyAnimation *        animation_;

@@ -7,13 +7,12 @@
 namespace ventilator {
 namespace modes {
     PCV::PCV(QWidget * parent) 
-        : QScrollArea(parent)
+        : QWidget(parent)
         , is_expanded_(true)
     {
         setContentsMargins(0, 0, 0, 0);
         setMinimumHeight(0);
 
-        label_  = new QLabel("Pressure Controlled Ventilation");
         peep_   = new spinbox::PEEP;
         peak_   = new spinbox::pressure::Peak;
 
@@ -22,7 +21,6 @@ namespace modes {
         form->addRow("Peak Pressure (cmH<sub>2</sub>O)", peak_);
 
         QVBoxLayout * layout = new QVBoxLayout;
-        layout->addWidget(label_);
         layout->addLayout(form);
 
         setLayout(layout);

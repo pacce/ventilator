@@ -9,14 +9,18 @@ namespace ventilator {
         pcv_ = new ventilator::modes::PCV;
         vcv_ = new ventilator::modes::VCV;
 
-        QRadioButton * radio1 = new QRadioButton("PCV");
-        QRadioButton * radio2 = new QRadioButton("VCV");
-        radio1->setChecked(true);
+        QPushButton * pcv_button = new QPushButton("Pressure Controlled Ventilation");
+        pcv_button->setFlat(true);
+        pcv_button->setStyleSheet("text-align: left");
+
+        QPushButton * vcv_button = new QPushButton("Volume Controlled Ventilation");
+        vcv_button->setFlat(true);
+        vcv_button->setStyleSheet("text-align: left");
 
         QVBoxLayout * layout = new QVBoxLayout;
-        layout->addWidget(radio1);
-        layout->addWidget(radio2);
+        layout->addWidget(pcv_button);
         layout->addWidget(pcv_);
+        layout->addWidget(vcv_button);
         layout->addWidget(vcv_);
         layout->addStretch(1);
         setLayout(layout);
@@ -25,12 +29,12 @@ namespace ventilator {
         connect(pcv_, &ventilator::modes::PCV::peep, this, &Ventilator::peep);
         connect(vcv_, &ventilator::modes::VCV::peep, this, &Ventilator::peep);
 
-        connect(radio1, &QAbstractButton::clicked, this, [this]() {
+        connect(pcv_button, &QAbstractButton::clicked, this, [this]() {
             emit mode(ventilation::modes::Names::PCV);
             pcv_->expand();
             vcv_->collapse();
             });
-        connect(radio2, &QAbstractButton::clicked, this, [this]() {
+        connect(vcv_button, &QAbstractButton::clicked, this, [this]() {
             emit mode(ventilation::modes::Names::VCV);
             pcv_->collapse();
             vcv_->expand();

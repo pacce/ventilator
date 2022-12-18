@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <QGroupBox>
 #include <QLabel>
-#include <QRadioButton>
+#include <QPushButton>
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 

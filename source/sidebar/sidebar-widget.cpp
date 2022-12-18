@@ -7,6 +7,8 @@ namespace sidebar {
     Sidebar::Sidebar(QWidget * parent)
         : QFrame(parent)
     {
+        setMaximumWidth(500);
+
         lung_ = new lung::Lung;
         ventilator_ = new ventilator::Ventilator;
 
