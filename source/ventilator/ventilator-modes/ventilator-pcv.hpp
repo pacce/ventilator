@@ -9,6 +9,8 @@
 #include "spinbox-pressure-peak.hpp"
 #include "spinbox-ratio.hpp"
 
+#include "ventilator-setup.hpp"
+
 namespace ventilator {
 namespace modes {
     class PCV : public QWidget {
@@ -19,12 +21,10 @@ namespace modes {
 
             void collapse();
             void expand();
+            
+            ventilator::setup::PCV<double> setup() const;
         signals:
-            void peep(ventilation::PEEP<double>) const;
-            void peak(ventilation::pressure::Peak<double>) const;
-
-            void frequency(ventilation::frequency::Frequency<double>) const;
-            void ratio(ventilation::ratio::Ratio<double>) const;
+            void value(const ventilator::setup::PCV<double>) const;
         private:
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;

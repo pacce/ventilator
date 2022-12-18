@@ -25,6 +25,8 @@ namespace ventilator {
 
             void frequency(const ventilation::frequency::Frequency<double>& f) const;
             void ratio(ventilation::ratio::Ratio<double>) const;
+
+            void pcv(const ventilator::setup::PCV<double>) const;
         private:
             ventilator::modes::PCV *    pcv_;
             ventilator::modes::VCV *    vcv_;

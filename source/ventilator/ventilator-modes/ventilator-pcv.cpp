@@ -6,7 +6,7 @@
 
 namespace ventilator {
 namespace modes {
-    PCV::PCV(QWidget * parent) 
+    PCV::PCV(QWidget * parent)
         : QWidget(parent)
         , is_expanded_(true)
     {
@@ -28,10 +28,31 @@ namespace modes {
         layout->addLayout(form);
 
         setLayout(layout);
-        connect(peep_, &spinbox::PEEP::peep, this, &PCV::peep);
-        connect(peak_, &spinbox::pressure::Peak::pressure, this, &PCV::peak);
-        connect(frequency_, &spinbox::Frequency::frequency, this, &PCV::frequency);
-        connect(ratio_, &spinbox::Ratio::ratio, this, &PCV::ratio);
+
+        connect(
+                  peep_
+                , &spinbox::PEEP::peep
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
+        connect(
+                  peak_
+                , &spinbox::pressure::Peak::pressure
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
+        connect(
+                  frequency_
+                , &spinbox::Frequency::frequency
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
+        connect(
+                  ratio_
+                , &spinbox::Ratio::ratio
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
 
         animation_ = new QPropertyAnimation(this, "maximumHeight");
         animation_->setStartValue(0);
@@ -57,6 +78,16 @@ namespace modes {
             is_expanded_ = true;
             animation_->start();
         }
+    }
+
+    ventilator::setup::PCV<double>
+    PCV::setup() const {
+        return ventilator::setup::PCV<double>(
+                  peep_->get()
+                , peak_->get()
+                , frequency_->get()
+                , ratio_->get()
+                );
     }
 } // namesp:ace modes
 } // namespace ventilator

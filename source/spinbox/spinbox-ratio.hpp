@@ -34,6 +34,8 @@ namespace spinbox {
         public:
             Ratio(QWidget * parent = nullptr);
             ~Ratio();
+
+            ventilation::ratio::Ratio<double> get() const;
         signals:
             void ratio(const ventilation::ratio::Ratio<double>& r);
         private slots:

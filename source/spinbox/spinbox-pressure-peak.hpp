@@ -12,6 +12,8 @@ namespace pressure {
         public:
             Peak(QWidget * parent = nullptr);
             ~Peak();
+
+            ventilation::pressure::Peak<double> get() const;
         signals:
             void pressure(ventilation::pressure::Peak<double>) const;
         private slots:

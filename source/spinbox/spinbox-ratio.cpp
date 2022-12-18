@@ -41,6 +41,18 @@ namespace spinbox {
     }
 
     Ratio::~Ratio() {}
+    
+    ventilation::ratio::Ratio<double>
+    Ratio::get() const {
+        try {
+            double i = static_cast<double>(inspiration_->value());
+            double e = static_cast<double>( expiration_->value());
+
+            return ventilation::ratio::Ratio<double>(i, e);
+        } catch (const std::exception& e) {
+            return ventilation::ratio::Ratio<double>(1.0, 1.0);
+        }
+    }
 
     void
     Ratio::inspiration(int i) {

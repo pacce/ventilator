@@ -6,6 +6,8 @@
 #include <variant>
 #include <ventilation/ventilation.hpp>
 
+#include "ventilator-modes/ventilator-setup.hpp"
+
 namespace ventilator {
     class Engine : public QWidget {
         Q_OBJECT
@@ -27,8 +29,8 @@ namespace ventilator {
             void peak(const ventilation::pressure::Peak<double>& peak);
 
             void mode(const ventilation::modes::Names& names);
-            void frequency(const ventilation::frequency::Frequency<double>& f);
-            void ratio(const ventilation::ratio::Ratio<double>& r);
+
+            void pcv(const ventilator::setup::PCV<double>& setup);
         private:
             std::chrono::duration<double>   step_;
 

@@ -12,6 +12,8 @@ namespace spinbox {
         public:
             Frequency(QWidget * parent = nullptr);
             ~Frequency();
+
+            ventilation::frequency::Frequency<double> get() const;
         signals:
             void frequency(ventilation::frequency::Frequency<double>) const;
         private slots:

@@ -12,6 +12,15 @@ namespace spinbox {
 
     PEEP::~PEEP() {}
 
+    ventilation::PEEP<double>
+    PEEP::get() const {
+        try {
+            return ventilation::PEEP<double>(this->value());
+        } catch (const std::exception& e) {
+            return ventilation::PEEP<double>();
+        }
+    }
+
     void
     PEEP::update(double value) {
         try {

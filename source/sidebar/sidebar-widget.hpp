@@ -26,6 +26,8 @@ namespace sidebar {
 
             void frequency(const ventilation::frequency::Frequency<double>& f) const;
             void ratio(const ventilation::ratio::Ratio<double>& r) const;
+
+            void pcv(const ventilator::setup::PCV<double>) const;
         private:
             lung::Lung *                lung_;
             ventilator::Ventilator *    ventilator_;

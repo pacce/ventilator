@@ -12,6 +12,8 @@ namespace spinbox {
         public:
             PEEP(QWidget * parent = nullptr);
             ~PEEP();
+
+            ventilation::PEEP<double> get() const;
         signals:
             void peep(ventilation::PEEP<double>) const;
         private slots:

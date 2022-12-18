@@ -12,6 +12,15 @@ namespace pressure {
     }
 
     Peak::~Peak() {}
+    
+    ventilation::pressure::Peak<double>
+    Peak::get() const {
+        try {
+            return ventilation::pressure::Peak<double>(this->value());
+        } catch (const std::exception& e) {
+            return ventilation::pressure::Peak<double>();
+        }
+    }
 
     void
     Peak::update(double value) {

@@ -42,31 +42,7 @@ Ventilator::Ventilator(QWidget * parent)
             , engine_
             , &ventilator::Engine::resistance
             );
-    connect(sidebar_
-            , &ventilator::sidebar::Sidebar::peep
-            , engine_
-            , &ventilator::Engine::peep
-            );
-    connect(sidebar_
-            , &ventilator::sidebar::Sidebar::peak
-            , engine_
-            , &ventilator::Engine::peak
-            );
-    connect(sidebar_
-            , &ventilator::sidebar::Sidebar::mode
-            , engine_
-            , &ventilator::Engine::mode
-            );
-    connect(sidebar_
-            , &ventilator::sidebar::Sidebar::frequency
-            , engine_
-            , &ventilator::Engine::frequency
-            );
-    connect(sidebar_
-            , &ventilator::sidebar::Sidebar::ratio
-            , engine_
-            , &ventilator::Engine::ratio
-            );
+    connect(sidebar_, &ventilator::sidebar::Sidebar::pcv, engine_, &ventilator::Engine::pcv);
     timer->start(10);
 }
 

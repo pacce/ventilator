@@ -14,14 +14,16 @@ namespace spinbox {
 
     Frequency::~Frequency() {}
 
-    void
-    Frequency::update(int value) {
+    ventilation::frequency::Frequency<double>
+    Frequency::get() const {
         try {
-            double v = static_cast<double>(value) / 60.0;
-            ventilation::frequency::Frequency f(v);
-            emit frequency(f);
+            return ventilation::frequency::Frequency<double>(this->value() / 60.0);
         } catch (const std::exception& e) {
+            return ventilation::frequency::Frequency<double>(1.0);
         }
     }
+
+    void
+    Frequency::update(int) { emit frequency(this->get()); }
 } // namespace spinbox
 } // namespace ventilator

@@ -108,34 +108,12 @@ namespace ventilator {
     }
 
     void
-    Engine::frequency(const ventilation::frequency::Frequency<double>& f) {
-        frequency_  = f;
-        cycle_      = ventilation::cycle::Cycle<double>(frequency_, ratio_);
+    Engine::pcv(const ventilator::setup::PCV<double>& setup) {
+        mode_   = ventilation::modes::Names::PCV;
 
-        using namespace ventilation::modes;
-        switch(mode_) {
-            case ventilation::modes::Names::EMPTY:
-            { break; }
-            case ventilation::modes::Names::PCV:
-            { std::get<1>(ventilator_).set(cycle_); break; }
-            case ventilation::modes::Names::VCV:
-            { std::get<1>(ventilator_).set(cycle_); break; }
-        }
-    }
+        ratio_  = setup.ratio;
+        cycle_  = setup.cycle();
         
-    void
-    Engine::ratio(const ventilation::ratio::Ratio<double>& r) {
-        ratio_  = r;
-        cycle_  = ventilation::cycle::Cycle<double>(frequency_, ratio_);
-
-        using namespace ventilation::modes;
-        switch(mode_) {
-            case ventilation::modes::Names::EMPTY:
-            { break; }
-            case ventilation::modes::Names::PCV:
-            { std::get<1>(ventilator_).set(cycle_); break; }
-            case ventilation::modes::Names::VCV:
-            { std::get<1>(ventilator_).set(cycle_); break; }
-        }
+        ventilator_ = ventilation::modes::PCV<double>(setup.peep, setup.peak, cycle_);
     }
 } // namespace ventilator
