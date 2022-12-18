@@ -7,6 +7,8 @@
 #include "spinbox-peep.hpp"
 #include "spinbox-pressure-peak.hpp"
 
+#include "ventilator-setup.hpp"
+
 namespace ventilator {
 namespace modes {
     class VCV : public QWidget {
@@ -17,8 +19,10 @@ namespace modes {
 
             void collapse();
             void expand();
+
+            ventilator::setup::VCV<double> setup() const;
         signals:
-            void peep(ventilation::PEEP<double>) const;
+            void value(const ventilator::setup::VCV<double>) const;
         private:
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;

@@ -70,44 +70,6 @@ namespace ventilator {
     }
 
     void
-    Engine::peep(const ventilation::PEEP<double>& peep) {
-        switch(mode_) {
-            case ventilation::modes::Names::EMPTY:
-            { break; }
-            case ventilation::modes::Names::PCV:
-            { std::get<1>(ventilator_).set(peep); break; }
-            case ventilation::modes::Names::VCV:
-            { std::get<2>(ventilator_).set(peep); break; }
-        }
-    }
-
-    void
-    Engine::peak(const ventilation::pressure::Peak<double>& peep) {
-        switch(mode_) {
-            case ventilation::modes::Names::EMPTY:
-            { break; }
-            case ventilation::modes::Names::PCV:
-            { std::get<1>(ventilator_).set(peep); break; }
-            case ventilation::modes::Names::VCV:
-            { break; }
-        }
-    }
-
-    void
-    Engine::mode(const ventilation::modes::Names& names) {
-        using namespace ventilation::modes;
-        mode_ = names;
-        switch(mode_) {
-            case ventilation::modes::Names::EMPTY:
-            { break; }
-            case ventilation::modes::Names::PCV:
-            { ventilator_ = PCV<double>(PEEP(5.0), Peak(20.0), cycle_); break; }
-            case ventilation::modes::Names::VCV:
-            { ventilator_ = VCV<double>(PEEP(5.0), Flow(1.0), cycle_); break; }
-        }
-    }
-
-    void
     Engine::pcv(const ventilator::setup::PCV<double>& setup) {
         mode_   = ventilation::modes::Names::PCV;
 
@@ -115,5 +77,12 @@ namespace ventilator {
         cycle_  = setup.cycle();
         
         ventilator_ = ventilation::modes::PCV<double>(setup.peep, setup.peak, cycle_);
+    }
+
+    void
+    Engine::vcv(const ventilator::setup::VCV<double>& setup) {
+        mode_   = ventilation::modes::Names::VCV;
+
+        ventilator_ = ventilation::modes::VCV<double>(setup.peep, Flow(1.0), cycle_);
     }
 } // namespace ventilator

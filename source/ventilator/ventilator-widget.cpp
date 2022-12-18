@@ -28,23 +28,29 @@ namespace ventilator {
         setLayout(layout);
         setTitle("Ventilator");
 
-        connect(vcv_, &ventilator::modes::VCV::peep, this, &Ventilator::peep);
-        // connect(pcv_, &ventilator::modes::PCV::peep, this, &Ventilator::peep);
-        // connect(pcv_, &ventilator::modes::PCV::frequency, this, &Ventilator::frequency);
-        // connect(pcv_, &ventilator::modes::PCV::ratio, this, &Ventilator::ratio);
-
+        connect(vcv_, &ventilator::modes::VCV::value, this, &Ventilator::vcv);
         connect(pcv_, &ventilator::modes::PCV::value, this, &Ventilator::pcv);
 
-        connect(pcv_button, &QAbstractButton::clicked, this, [this]() {
-            emit mode(ventilation::modes::Names::PCV);
-            pcv_->expand();
-            vcv_->collapse();
-            });
-        connect(vcv_button, &QAbstractButton::clicked, this, [this]() {
-            emit mode(ventilation::modes::Names::VCV);
-            pcv_->collapse();
-            vcv_->expand();
-            });
+        connect(
+                  pcv_button
+                , &QAbstractButton::clicked
+                , this
+                , [this]() {
+                    pcv_->expand();
+                    vcv_->collapse();
+
+                    emit pcv(pcv_->setup());
+                });
+        connect(
+                  vcv_button
+                , &QAbstractButton::clicked
+                , this
+                , [this]() {
+                    pcv_->collapse();
+                    vcv_->expand();
+
+                    emit vcv(vcv_->setup());
+                });
     }
 
     Ventilator::~Ventilator() {}

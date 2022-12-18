@@ -18,14 +18,7 @@ namespace ventilator {
             Ventilator(QWidget * parent = nullptr);
             ~Ventilator();
         signals:
-            void peak(const ventilation::pressure::Peak<double>& p) const;
-            void peep(const ventilation::PEEP<double>& p) const;
-
-            void mode(const ventilation::modes::Names& names) const;
-
-            void frequency(const ventilation::frequency::Frequency<double>& f) const;
-            void ratio(ventilation::ratio::Ratio<double>) const;
-
+            void vcv(const ventilator::setup::VCV<double>) const;
             void pcv(const ventilator::setup::PCV<double>) const;
         private:
             ventilator::modes::PCV *    pcv_;

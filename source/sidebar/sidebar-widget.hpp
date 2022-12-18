@@ -19,15 +19,8 @@ namespace sidebar {
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
 
-            void peep(const ventilation::PEEP<double>& p) const;
-            void peak(const ventilation::pressure::Peak<double>& p) const;
-
-            void mode(const ventilation::modes::Names& names) const;
-
-            void frequency(const ventilation::frequency::Frequency<double>& f) const;
-            void ratio(const ventilation::ratio::Ratio<double>& r) const;
-
             void pcv(const ventilator::setup::PCV<double>) const;
+            void vcv(const ventilator::setup::VCV<double>) const;
         private:
             lung::Lung *                lung_;
             ventilator::Ventilator *    ventilator_;

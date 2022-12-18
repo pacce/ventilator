@@ -89,5 +89,5 @@ namespace modes {
                 , ratio_->get()
                 );
     }
-} // namesp:ace modes
+} // namespace modes
 } // namespace ventilator

@@ -22,7 +22,12 @@ namespace modes {
         layout->addLayout(form);
 
         setLayout(layout);
-        connect(peep_, &spinbox::PEEP::peep, this, &VCV::peep);
+        connect(
+                  peep_
+                , &spinbox::PEEP::peep
+                , this
+                , [this](){ emit value(this->setup()); }
+                );
 
         animation_ = new QPropertyAnimation(this, "maximumHeight");
         animation_->setStartValue(0);
@@ -51,5 +56,15 @@ namespace modes {
             animation_->start();
         }
     }
-} // namesp:ace modes
+
+    ventilator::setup::VCV<double>
+    VCV::setup() const {
+        return ventilator::setup::VCV<double>(
+                  peep_->get()
+                // , peak_->get()
+                // , frequency_->get()
+                // , ratio_->get()
+                );
+    }
+} // namespace modes
 } // namespace ventilator

@@ -25,12 +25,8 @@ namespace ventilator {
             void compliance(const ventilation::Compliance<double>& c);
             void resistance(const ventilation::Resistance<double>& r);
 
-            void peep(const ventilation::PEEP<double>& peep);
-            void peak(const ventilation::pressure::Peak<double>& peak);
-
-            void mode(const ventilation::modes::Names& names);
-
             void pcv(const ventilator::setup::PCV<double>& setup);
+            void vcv(const ventilator::setup::VCV<double>& setup);
         private:
             std::chrono::duration<double>   step_;
 

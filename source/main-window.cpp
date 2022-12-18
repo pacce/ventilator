@@ -43,6 +43,7 @@ Ventilator::Ventilator(QWidget * parent)
             , &ventilator::Engine::resistance
             );
     connect(sidebar_, &ventilator::sidebar::Sidebar::pcv, engine_, &ventilator::Engine::pcv);
+    connect(sidebar_, &ventilator::sidebar::Sidebar::vcv, engine_, &ventilator::Engine::vcv);
     timer->start(10);
 }
 
