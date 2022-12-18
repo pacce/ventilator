@@ -28,11 +28,16 @@ namespace ventilator {
 
             void mode(const ventilation::modes::Names& names);
             void frequency(const ventilation::frequency::Frequency<double>& f);
+            void ratio(const ventilation::ratio::Ratio<double>& r);
         private:
             std::chrono::duration<double>   step_;
 
             ventilation::lung::Forward<double>  lung_;
-            ventilation::cycle::Cycle<double>   cycle_;
+
+            ventilation::frequency::Frequency<double>   frequency_;
+            ventilation::ratio::Ratio<double>           ratio_;
+            ventilation::cycle::Cycle<double>           cycle_;
+
             ventilation::Modes<double>          ventilator_;
             ventilation::modes::Names           mode_;
     };

@@ -7,6 +7,7 @@
 #include "spinbox-frequency.hpp"
 #include "spinbox-peep.hpp"
 #include "spinbox-pressure-peak.hpp"
+#include "spinbox-ratio.hpp"
 
 namespace ventilator {
 namespace modes {
@@ -21,11 +22,14 @@ namespace modes {
         signals:
             void peep(ventilation::PEEP<double>) const;
             void peak(ventilation::pressure::Peak<double>) const;
+
             void frequency(ventilation::frequency::Frequency<double>) const;
+            void ratio(ventilation::ratio::Ratio<double>) const;
         private:
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;
             spinbox::Frequency *        frequency_;
+            spinbox::Ratio *            ratio_;
 
             QPropertyAnimation *        animation_;
             bool                        is_expanded_;

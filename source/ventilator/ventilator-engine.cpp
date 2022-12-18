@@ -1,4 +1,5 @@
 #include "ventilator-engine.hpp"
+#include <iostream>
 
 namespace ventilator {
     using namespace std::chrono_literals;
@@ -13,13 +14,18 @@ namespace ventilator {
     using Peak      = ventilation::pressure::Peak<double>;
     using Volume    = ventilation::Volume<double>;
     using Packet    = ventilation::Packet<double>;
+
+    using Frequency = ventilation::frequency::Frequency<double>;
+    using Ratio     = ventilation::ratio::Ratio<double>;
     using duration  = std::chrono::duration<double>;
 
     Engine::Engine(QWidget * parent)
         : QWidget(parent)
         , step_(100us)
         , lung_(Resistance(50.0), Compliance(30.0e-3))
-        , cycle_(duration(0.6), duration(2.4))
+        , frequency_(Frequency(0.5))
+        , ratio_(1.0, 4.0)
+        , cycle_(frequency_, ratio_)
     {
         ventilator_ = ventilation::modes::PCV<double>(PEEP(5.0), Peak(20.0), cycle_);
         mode_       = ventilation::modes::Names::PCV;
@@ -103,8 +109,24 @@ namespace ventilator {
 
     void
     Engine::frequency(const ventilation::frequency::Frequency<double>& f) {
-        ventilation::ratio::Ratio<double> ratio(1.0, 4.0);
-        cycle_ = ventilation::cycle::Cycle<double>(f, ratio);
+        frequency_  = f;
+        cycle_      = ventilation::cycle::Cycle<double>(frequency_, ratio_);
+
+        using namespace ventilation::modes;
+        switch(mode_) {
+            case ventilation::modes::Names::EMPTY:
+            { break; }
+            case ventilation::modes::Names::PCV:
+            { std::get<1>(ventilator_).set(cycle_); break; }
+            case ventilation::modes::Names::VCV:
+            { std::get<1>(ventilator_).set(cycle_); break; }
+        }
+    }
+        
+    void
+    Engine::ratio(const ventilation::ratio::Ratio<double>& r) {
+        ratio_  = r;
+        cycle_  = ventilation::cycle::Cycle<double>(frequency_, ratio_);
 
         using namespace ventilation::modes;
         switch(mode_) {

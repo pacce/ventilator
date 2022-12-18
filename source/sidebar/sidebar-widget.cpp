@@ -23,6 +23,7 @@ namespace sidebar {
         connect(ventilator_, &ventilator::Ventilator::peak, this, &Sidebar::peak);
         connect(ventilator_, &ventilator::Ventilator::mode, this, &Sidebar::mode);
         connect(ventilator_, &ventilator::Ventilator::frequency, this, &Sidebar::frequency);
+        connect(ventilator_, &ventilator::Ventilator::ratio, this, &Sidebar::ratio);
     }
 
     Sidebar::~Sidebar() {}

@@ -16,11 +16,13 @@ namespace modes {
         peep_       = new spinbox::PEEP;
         peak_       = new spinbox::pressure::Peak;
         frequency_  = new spinbox::Frequency;
+        ratio_      = new spinbox::Ratio;
 
         QFormLayout * form = new QFormLayout;
         form->addRow("Positive End-Expiratory Pressure (cmH<sub>2</sub>O)", peep_);
         form->addRow("Peak Pressure (cmH<sub>2</sub>O)", peak_);
         form->addRow("Respiratory Rate (bpm)", frequency_);
+        form->addRow("Inspiratory:Expiratory Ratio", ratio_);
 
         QVBoxLayout * layout = new QVBoxLayout;
         layout->addLayout(form);
@@ -29,6 +31,7 @@ namespace modes {
         connect(peep_, &spinbox::PEEP::peep, this, &PCV::peep);
         connect(peak_, &spinbox::pressure::Peak::pressure, this, &PCV::peak);
         connect(frequency_, &spinbox::Frequency::frequency, this, &PCV::frequency);
+        connect(ratio_, &spinbox::Ratio::ratio, this, &PCV::ratio);
 
         animation_ = new QPropertyAnimation(this, "maximumHeight");
         animation_->setStartValue(0);

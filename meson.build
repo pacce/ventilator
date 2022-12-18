@@ -29,6 +29,7 @@ sources       = [
   , 'source/spinbox/spinbox-frequency.cpp'
   , 'source/spinbox/spinbox-peep.cpp'
   , 'source/spinbox/spinbox-pressure-peak.cpp'
+  , 'source/spinbox/spinbox-ratio.cpp'
   , 'source/spinbox/spinbox-resistance.cpp'
 
   , 'source/ventilator/ventilator-engine.cpp'
@@ -51,6 +52,7 @@ processed     = qt.preprocess(
       , 'source/spinbox/spinbox-frequency.hpp'
       , 'source/spinbox/spinbox-peep.hpp'
       , 'source/spinbox/spinbox-pressure-peak.hpp'
+      , 'source/spinbox/spinbox-ratio.hpp'
       , 'source/spinbox/spinbox-resistance.hpp'
 
       , 'source/ventilator/ventilator-engine.hpp'
