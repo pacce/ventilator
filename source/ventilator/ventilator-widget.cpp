@@ -9,12 +9,14 @@ namespace ventilator {
         pcv_ = new ventilator::modes::PCV;
         vcv_ = new ventilator::modes::VCV;
 
-        QPushButton * pcv_button = new QPushButton("Pressure Controlled Ventilation");
+        QPushButton * pcv_button = new QPushButton();
         pcv_button->setFlat(true);
+        pcv_button->setText("Pressure Controlled Ventilation");
         pcv_button->setStyleSheet("text-align: left");
 
-        QPushButton * vcv_button = new QPushButton("Volume Controlled Ventilation");
+        QPushButton * vcv_button = new QPushButton();
         vcv_button->setFlat(true);
+        vcv_button->setText("Volume Controlled Ventilation");
         vcv_button->setStyleSheet("text-align: left");
 
         QVBoxLayout * layout = new QVBoxLayout;
