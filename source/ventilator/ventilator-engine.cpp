@@ -21,7 +21,6 @@ namespace ventilator {
         , lung_(Resistance(50.0), Compliance(30.0e-3))
         , cycle_(duration(0.6), duration(2.4))
     {
-        // ventilator_ = ventilation::modes::VCV<double>(PEEP(5.0), Flow(1.0), cycle_);
         ventilator_ = ventilation::modes::PCV<double>(PEEP(5.0), Peak(20.0), cycle_);
         mode_       = ventilation::modes::Names::PCV;
     }
@@ -92,6 +91,22 @@ namespace ventilator {
     Engine::mode(const ventilation::modes::Names& names) {
         using namespace ventilation::modes;
         mode_ = names;
+        switch(mode_) {
+            case ventilation::modes::Names::EMPTY:
+            { break; }
+            case ventilation::modes::Names::PCV:
+            { ventilator_ = PCV<double>(PEEP(5.0), Peak(20.0), cycle_); break; }
+            case ventilation::modes::Names::VCV:
+            { ventilator_ = VCV<double>(PEEP(5.0), Flow(1.0), cycle_); break; }
+        }
+    }
+
+    void
+    Engine::frequency(const ventilation::frequency::Frequency<double>& f) {
+        ventilation::ratio::Ratio<double> ratio(1.0, 4.0);
+        cycle_ = ventilation::cycle::Cycle<double>(f, ratio);
+
+        using namespace ventilation::modes;
         switch(mode_) {
             case ventilation::modes::Names::EMPTY:
             { break; }

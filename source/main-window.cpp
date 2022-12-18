@@ -57,6 +57,11 @@ Ventilator::Ventilator(QWidget * parent)
             , engine_
             , &ventilator::Engine::mode
             );
+    connect(sidebar_
+            , &ventilator::sidebar::Sidebar::frequency
+            , engine_
+            , &ventilator::Engine::frequency
+            );
     timer->start(10);
 }
 

@@ -30,6 +30,7 @@ namespace ventilator {
 
         connect(pcv_, &ventilator::modes::PCV::peep, this, &Ventilator::peep);
         connect(vcv_, &ventilator::modes::VCV::peep, this, &Ventilator::peep);
+        connect(pcv_, &ventilator::modes::PCV::frequency, this, &Ventilator::frequency);
 
         connect(pcv_button, &QAbstractButton::clicked, this, [this]() {
             emit mode(ventilation::modes::Names::PCV);

@@ -4,6 +4,7 @@
 #include <QPropertyAnimation>
 #include <QWidget>
 
+#include "spinbox-frequency.hpp"
 #include "spinbox-peep.hpp"
 #include "spinbox-pressure-peak.hpp"
 
@@ -20,9 +21,12 @@ namespace modes {
         signals:
             void peep(ventilation::PEEP<double>) const;
             void peak(ventilation::pressure::Peak<double>) const;
+            void frequency(ventilation::frequency::Frequency<double>) const;
         private:
             spinbox::PEEP *             peep_;
             spinbox::pressure::Peak *   peak_;
+            spinbox::Frequency *        frequency_;
+
             QPropertyAnimation *        animation_;
             bool                        is_expanded_;
     };

@@ -26,6 +26,7 @@ sources       = [
   , 'source/sidebar/sidebar-widget.cpp'
 
   , 'source/spinbox/spinbox-compliance.cpp'
+  , 'source/spinbox/spinbox-frequency.cpp'
   , 'source/spinbox/spinbox-peep.cpp'
   , 'source/spinbox/spinbox-pressure-peak.cpp'
   , 'source/spinbox/spinbox-resistance.cpp'
@@ -47,6 +48,7 @@ processed     = qt.preprocess(
       , 'source/sidebar/sidebar-widget.hpp'
 
       , 'source/spinbox/spinbox-compliance.hpp'
+      , 'source/spinbox/spinbox-frequency.hpp'
       , 'source/spinbox/spinbox-peep.hpp'
       , 'source/spinbox/spinbox-pressure-peak.hpp'
       , 'source/spinbox/spinbox-resistance.hpp'

@@ -23,6 +23,8 @@ namespace sidebar {
             void peak(const ventilation::pressure::Peak<double>& p) const;
 
             void mode(const ventilation::modes::Names& names) const;
+
+            void frequency(const ventilation::frequency::Frequency<double>& f) const;
         private:
             lung::Lung *                lung_;
             ventilator::Ventilator *    ventilator_;
