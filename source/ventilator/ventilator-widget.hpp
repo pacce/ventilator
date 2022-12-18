@@ -2,7 +2,7 @@
 #define VENTILATION_VENTILATOR_WIDGET_HPP__
 
 #include <cstdint>
-#include <QFrame>
+#include <QGroupBox>
 #include <QLabel>
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
@@ -10,7 +10,7 @@
 #include "spinbox/spinbox-peep.hpp"
 
 namespace ventilator {
-    class Ventilator : public QFrame {
+    class Ventilator : public QGroupBox {
         Q_OBJECT
         public:
             Ventilator(QWidget * parent = nullptr);

@@ -4,13 +4,14 @@
 
 namespace ventilator {
     Ventilator::Ventilator(QWidget * parent)
-        : QFrame(parent)
+        : QGroupBox(parent)
     {
         peep_ = new spinbox::PEEP;
 
         QFormLayout * layout = new QFormLayout;
         layout->addRow("PEEP (cmH<sub>2</sub>O)", peep_);
         setLayout(layout);
+        setTitle("Ventilator");
 
         connect(peep_
                 , &spinbox::PEEP::peep
