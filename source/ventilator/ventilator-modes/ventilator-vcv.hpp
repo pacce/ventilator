@@ -25,7 +25,6 @@ namespace modes {
             void value(const ventilator::setup::VCV<double>) const;
         private:
             spinbox::PEEP *             peep_;
-            spinbox::pressure::Peak *   peak_;
             QPropertyAnimation *        animation_;
             bool                        is_expanded_;
     };
