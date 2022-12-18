@@ -23,11 +23,18 @@ namespace ventilator {
         setTitle("Ventilator");
 
         connect(pcv_, &ventilator::modes::PCV::peep, this, &Ventilator::peep);
-        connect(pcv_, &ventilator::modes::PCV::peak, this, &Ventilator::peak);
-
         connect(vcv_, &ventilator::modes::VCV::peep, this, &Ventilator::peep);
-        connect(radio1, &QAbstractButton::clicked, this, [this]() { emit mode(ventilation::modes::Names::PCV); });
-        connect(radio2, &QAbstractButton::clicked, this, [this]() { emit mode(ventilation::modes::Names::VCV); });
+
+        connect(radio1, &QAbstractButton::clicked, this, [this]() {
+            emit mode(ventilation::modes::Names::PCV);
+            pcv_->expand();
+            vcv_->collapse();
+            });
+        connect(radio2, &QAbstractButton::clicked, this, [this]() {
+            emit mode(ventilation::modes::Names::VCV);
+            pcv_->collapse();
+            vcv_->expand();
+            });
     }
 
     Ventilator::~Ventilator() {}
