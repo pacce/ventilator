@@ -23,6 +23,7 @@ namespace ventilator {
             void resistance(const ventilation::Resistance<double>& r);
             void peep(const ventilation::PEEP<double>& peep);
             void peak(const ventilation::pressure::Peak<double>& peak);
+            void mode(const ventilation::modes::Names& names);
         private:
             std::chrono::duration<double>   step_;
 

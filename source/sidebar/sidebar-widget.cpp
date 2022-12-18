@@ -19,6 +19,7 @@ namespace sidebar {
         connect(lung_, &lung::Lung::resistance, this, &Sidebar::resistance);
         connect(ventilator_, &ventilator::Ventilator::peep, this, &Sidebar::peep);
         connect(ventilator_, &ventilator::Ventilator::peak, this, &Sidebar::peak);
+        connect(ventilator_, &ventilator::Ventilator::mode, this, &Sidebar::mode);
     }
 
     Sidebar::~Sidebar() {}

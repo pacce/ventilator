@@ -87,4 +87,18 @@ namespace ventilator {
             { break; }
         }
     }
+
+    void
+    Engine::mode(const ventilation::modes::Names& names) {
+        using namespace ventilation::modes;
+        mode_ = names;
+        switch(mode_) {
+            case ventilation::modes::Names::EMPTY:
+            { break; }
+            case ventilation::modes::Names::PCV:
+            { ventilator_ = PCV<double>(PEEP(5.0), Peak(20.0), cycle_); break; }
+            case ventilation::modes::Names::VCV:
+            { ventilator_ = VCV<double>(PEEP(5.0), Flow(1.0), cycle_); break; }
+        }
+    }
 } // namespace ventilator

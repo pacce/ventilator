@@ -14,7 +14,7 @@ Ventilator::Ventilator(QWidget * parent)
 {
     charts_     = new ventilator::charts::Charts;
     engine_     = new ventilator::Engine;
-    sidebar_   = new ventilator::sidebar::Sidebar;
+    sidebar_    = new ventilator::sidebar::Sidebar;
 
     QHBoxLayout * layout = new QHBoxLayout;
     layout->addWidget(sidebar_);
@@ -51,6 +51,11 @@ Ventilator::Ventilator(QWidget * parent)
             , &ventilator::sidebar::Sidebar::peak
             , engine_
             , &ventilator::Engine::peak
+            );
+    connect(sidebar_
+            , &ventilator::sidebar::Sidebar::mode
+            , engine_
+            , &ventilator::Engine::mode
             );
     timer->start(10);
 }

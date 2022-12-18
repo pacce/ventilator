@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <QGroupBox>
 #include <QLabel>
+#include <QRadioButton>
 #include <QWidget>
 #include <ventilation/ventilation.hpp>
 
@@ -19,6 +20,8 @@ namespace ventilator {
         signals:
             void peak(const ventilation::pressure::Peak<double>& p) const;
             void peep(const ventilation::PEEP<double>& p) const;
+
+            void mode(const ventilation::modes::Names& names) const;
         private:
             ventilator::modes::PCV *    pcv_;
             ventilator::modes::VCV *    vcv_;

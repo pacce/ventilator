@@ -18,8 +18,11 @@ namespace sidebar {
         signals:
             void compliance(const ventilation::Compliance<double>& c) const;
             void resistance(const ventilation::Resistance<double>& r) const;
+
             void peep(const ventilation::PEEP<double>& p) const;
             void peak(const ventilation::pressure::Peak<double>& p) const;
+
+            void mode(const ventilation::modes::Names& names) const;
         private:
             lung::Lung *                lung_;
             ventilator::Ventilator *    ventilator_;
