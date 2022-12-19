@@ -36,20 +36,24 @@ namespace ventilator {
                 , &QAbstractButton::clicked
                 , this
                 , [this]() {
-                    pcv_->expand();
-                    vcv_->collapse();
+                    if (!pcv_->is_expanded()) {
+                        pcv_->expand();
+                        vcv_->collapse();
 
-                    emit pcv(pcv_->setup());
+                        emit pcv(pcv_->setup());
+                    }
                 });
         connect(
                   vcv_button
                 , &QAbstractButton::clicked
                 , this
                 , [this]() {
-                    pcv_->collapse();
-                    vcv_->expand();
+                    if (!vcv_->is_expanded()) {
+                        pcv_->collapse();
+                        vcv_->expand();
 
-                    emit vcv(vcv_->setup());
+                        emit vcv(vcv_->setup());
+                    }
                 });
     }
 
