@@ -1,5 +1,6 @@
 #include "ventilator-widget.hpp"
 
+#include <iostream>
 #include <QVBoxLayout>
 
 namespace ventilator {
@@ -24,9 +25,10 @@ namespace ventilator {
         layout->addWidget(pcv_);
         layout->addWidget(vcv_button);
         layout->addWidget(vcv_);
-        layout->addStretch(1);
+        layout->addStretch();
         setLayout(layout);
         setTitle("Ventilator");
+        setMaximumHeight(minimumSizeHint().height());
 
         connect(vcv_, &ventilator::modes::VCV::value, this, &Ventilator::vcv);
         connect(pcv_, &ventilator::modes::PCV::value, this, &Ventilator::pcv);

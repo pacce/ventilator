@@ -16,6 +16,7 @@ namespace sidebar {
         QVBoxLayout * layout = new QVBoxLayout;
         layout->addWidget(lung_);
         layout->addWidget(ventilator_);
+        layout->setAlignment(Qt::AlignTop);
         setLayout(layout);
 
         connect(lung_, &lung::Lung::compliance, this, &Sidebar::compliance);
