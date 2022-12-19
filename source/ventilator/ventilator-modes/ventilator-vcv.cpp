@@ -84,5 +84,10 @@ namespace modes {
                 , ratio_->get()
                 );
     }
+
+    bool
+    VCV::is_expanded() const {
+        return is_expanded_;
+    }
 } // namespace modes
 } // namespace ventilator

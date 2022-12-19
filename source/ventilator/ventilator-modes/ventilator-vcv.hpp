@@ -23,6 +23,7 @@ namespace modes {
             void expand();
 
             ventilator::setup::VCV<double> setup() const;
+            bool is_expanded() const;
         signals:
             void value(const ventilator::setup::VCV<double>) const;
         private:
