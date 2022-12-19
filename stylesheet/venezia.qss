@@ -1,0 +1,2 @@
+QMainWindow { background-color: white }
+ventilator--Ventilator { background-color: red }
