@@ -25,11 +25,15 @@ namespace ventilator {
         : QWidget(parent)
         , step_(100us)
         , lung_(configuration::RESISTANCE, configuration::COMPLIANCE)
-        , frequency_(Frequency(0.5))
-        , ratio_(1.0, 4.0)
+        , frequency_(configuration::FREQUENCY)
+        , ratio_(configuration::INSIPIRATORY_RATIO, configuration::EXPIRATORY_RATIO)
         , cycle_(frequency_, ratio_)
     {
-        ventilator_ = ventilation::modes::PCV<double>(PEEP(5.0), Peak(20.0), cycle_);
+        ventilator_ = ventilation::modes::PCV<double>(
+                  configuration::PEEP
+                , configuration::PEAK
+                , cycle_
+                );
         mode_       = ventilation::modes::Names::PCV;
     }
 

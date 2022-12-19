@@ -11,6 +11,16 @@ namespace pressure {
         connect(this, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Peak::update);
     }
 
+    Peak::Peak(const ventilation::pressure::Peak<double>& p, QWidget * parent)
+        : QDoubleSpinBox(parent)
+        , validator_(new QDoubleValidator(0.0, 20.0, 1, this))
+    {
+        setValue(static_cast<double>(p));
+
+        setRange(0.0, 20.0);
+        connect(this, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &Peak::update);
+    }
+
     Peak::~Peak() {}
     
     ventilation::pressure::Peak<double>

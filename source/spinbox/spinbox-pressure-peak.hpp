@@ -11,6 +11,7 @@ namespace pressure {
         Q_OBJECT
         public:
             Peak(QWidget * parent = nullptr);
+            Peak(const ventilation::pressure::Peak<double>& p, QWidget * parent = nullptr);
             ~Peak();
 
             ventilation::pressure::Peak<double> get() const;

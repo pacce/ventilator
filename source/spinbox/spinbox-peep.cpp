@@ -10,6 +10,16 @@ namespace spinbox {
         connect(this, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &PEEP::update);
     }
 
+    PEEP::PEEP(const ventilation::PEEP<double>& p, QWidget * parent)
+        : QDoubleSpinBox(parent)
+        , validator_(new QDoubleValidator(0.0, 20.0, 1, this))
+    {
+        setValue(static_cast<double>(p));
+
+        setRange(0.0, 20.0);
+        connect(this, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &PEEP::update);
+    }
+
     PEEP::~PEEP() {}
 
     ventilation::PEEP<double>

@@ -10,6 +10,8 @@ namespace spinbox {
     class Frequency : public QSpinBox {
         Q_OBJECT
         public:
+            Frequency(const double& f, QWidget * parent = nullptr);
+            Frequency(const ventilation::frequency::Frequency<double>& f, QWidget * parent = nullptr);
             Frequency(QWidget * parent = nullptr);
             ~Frequency();
 

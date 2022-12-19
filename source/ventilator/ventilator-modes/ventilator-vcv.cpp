@@ -4,6 +4,8 @@
 #include <QFormLayout>
 #include <QVBoxLayout>
 
+#include "ventilator-configuration.hpp"
+
 namespace ventilator {
 namespace modes {
     VCV::VCV(QWidget * parent) 
@@ -13,9 +15,9 @@ namespace modes {
         setContentsMargins(0, 0, 0, 0);
         setMinimumHeight(0);
 
-        peep_       = new spinbox::PEEP;
-        frequency_  = new spinbox::Frequency;
-        ratio_      = new spinbox::Ratio;
+        peep_       = new spinbox::PEEP(configuration::PEEP);
+        frequency_  = new spinbox::Frequency(configuration::RESPIRATORY_RATE);
+        ratio_      = new spinbox::Ratio(configuration::INSIPIRATORY_RATIO, configuration::EXPIRATORY_RATIO);
 
         QFormLayout * form = new QFormLayout;
         form->addRow("Positive End-Expiratory Pressure (cmH<sub>2</sub>O)", peep_);

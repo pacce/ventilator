@@ -11,6 +11,7 @@ namespace spinbox {
         Q_OBJECT
         public:
             PEEP(QWidget * parent = nullptr);
+            PEEP(const ventilation::PEEP<double>& p, QWidget * parent = nullptr);
             ~PEEP();
 
             ventilation::PEEP<double> get() const;

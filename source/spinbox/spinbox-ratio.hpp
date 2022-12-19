@@ -10,6 +10,7 @@ namespace spinbox {
     class Expiration : public QSpinBox {
         Q_OBJECT
         public:
+            Expiration(int e, QWidget * parent = nullptr);
             Expiration(QWidget * parent = nullptr);
             ~Expiration();
         signals:
@@ -21,6 +22,7 @@ namespace spinbox {
     class Inspiration : public QSpinBox {
         Q_OBJECT
         public:
+            Inspiration(int i, QWidget * parent = nullptr);
             Inspiration(QWidget * parent = nullptr);
             ~Inspiration();
         signals:
@@ -32,6 +34,7 @@ namespace spinbox {
     class Ratio : public QWidget {
         Q_OBJECT
         public:
+            Ratio(int i, int e, QWidget * parent = nullptr);
             Ratio(QWidget * parent = nullptr);
             ~Ratio();
 

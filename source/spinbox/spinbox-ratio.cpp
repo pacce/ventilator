@@ -5,6 +5,16 @@
 
 namespace ventilator {
 namespace spinbox {
+    Expiration::Expiration(int e, QWidget * parent)
+        : QSpinBox(parent)
+        , validator_(new QIntValidator(1, 10, this))
+    {
+        setValue(e);
+
+        setRange(1, 10);
+        connect(this, QOverload<int>::of(&QSpinBox::valueChanged), this, &Expiration::expiration);
+    }
+
     Expiration::Expiration(QWidget * parent)
         : QSpinBox(parent)
         , validator_(new QIntValidator(1, 10, this))
@@ -15,6 +25,16 @@ namespace spinbox {
 
     Expiration::~Expiration() {}
 
+    Inspiration::Inspiration(int i, QWidget * parent)
+        : QSpinBox(parent)
+        , validator_(new QIntValidator(1, 10, this))
+    {
+        setValue(i);
+
+        setRange(1, 10);
+        connect(this, QOverload<int>::of(&QSpinBox::valueChanged), this, &Inspiration::inspiration);
+    }
+
     Inspiration::Inspiration(QWidget * parent)
         : QSpinBox(parent)
         , validator_(new QIntValidator(1, 10, this))
@@ -24,6 +44,21 @@ namespace spinbox {
     }
 
     Inspiration::~Inspiration() {}
+
+    Ratio::Ratio(int i, int e, QWidget * parent) : QWidget(parent) {
+        inspiration_    = new Inspiration(i);
+        expiration_     = new Expiration(e);
+
+        QHBoxLayout * layout = new QHBoxLayout;
+        layout->addWidget(inspiration_);
+        layout->addWidget(new QLabel(":"));
+        layout->addWidget(expiration_);
+
+        connect( expiration_,   &Expiration::expiration, this,  &Ratio::expiration);
+        connect(inspiration_, &Inspiration::inspiration, this, &Ratio::inspiration);
+
+        setLayout(layout);
+    }
 
     Ratio::Ratio(QWidget * parent) : QWidget(parent) {
         inspiration_    = new Inspiration;
