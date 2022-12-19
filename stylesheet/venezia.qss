@@ -1,2 +1,7 @@
 QMainWindow { background-color: white }
-ventilator--Ventilator { background-color: red }
+
+ventilator--Ventilator {
+    color           : white;
+    background-color: #440099;
+    border-radius   : 10px;
+    }
