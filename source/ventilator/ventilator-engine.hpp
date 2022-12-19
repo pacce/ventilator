@@ -31,11 +31,6 @@ namespace ventilator {
             std::chrono::duration<double>   step_;
 
             ventilation::lung::Forward<double>  lung_;
-
-            ventilation::frequency::Frequency<double>   frequency_;
-            ventilation::ratio::Ratio<double>           ratio_;
-            ventilation::cycle::Cycle<double>           cycle_;
-
             ventilation::Modes<double>          ventilator_;
             ventilation::modes::Names           mode_;
     };

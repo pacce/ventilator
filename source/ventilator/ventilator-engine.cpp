@@ -17,6 +17,7 @@ namespace ventilator {
     using Volume    = ventilation::Volume<double>;
     using Packet    = ventilation::Packet<double>;
 
+    using Cycle     = ventilation::cycle::Cycle<double>;
     using Frequency = ventilation::frequency::Frequency<double>;
     using Ratio     = ventilation::ratio::Ratio<double>;
     using duration  = std::chrono::duration<double>;
@@ -25,15 +26,12 @@ namespace ventilator {
         : QWidget(parent)
         , step_(100us)
         , lung_(configuration::RESISTANCE, configuration::COMPLIANCE)
-        , frequency_(configuration::FREQUENCY)
-        , ratio_(configuration::INSIPIRATORY_RATIO, configuration::EXPIRATORY_RATIO)
-        , cycle_(frequency_, ratio_)
     {
-        ventilator_ = ventilation::modes::PCV<double>(
-                  configuration::PEEP
-                , configuration::PEAK
-                , cycle_
-                );
+        Frequency   frequency(configuration::FREQUENCY);
+        Ratio       ratio(configuration::INSIPIRATORY_RATIO, configuration::EXPIRATORY_RATIO);
+        Cycle       cycle(frequency, ratio);
+
+        ventilator_ = ventilation::modes::PCV<double>(configuration::PEEP, configuration::PEAK, cycle);
         mode_       = ventilation::modes::Names::PCV;
     }
 
@@ -77,21 +75,17 @@ namespace ventilator {
 
     void
     Engine::pcv(const ventilator::setup::PCV<double>& setup) {
-        mode_   = ventilation::modes::Names::PCV;
+        Cycle cycle = setup.cycle();
 
-        ratio_  = setup.ratio;
-        cycle_  = setup.cycle();
-        
-        ventilator_ = ventilation::modes::PCV<double>(setup.peep, setup.peak, cycle_);
+        mode_       = ventilation::modes::Names::PCV;
+        ventilator_ = ventilation::modes::PCV<double>(setup.peep, setup.peak, cycle);
     }
 
     void
     Engine::vcv(const ventilator::setup::VCV<double>& setup) {
-        mode_   = ventilation::modes::Names::VCV;
+        Cycle cycle = setup.cycle();
 
-        ratio_  = setup.ratio;
-        cycle_  = setup.cycle();
-
-        ventilator_ = ventilation::modes::VCV<double>(setup.peep, Flow(1.0), cycle_);
+        mode_       = ventilation::modes::Names::VCV;
+        ventilator_ = ventilation::modes::VCV<double>(setup.peep, Flow(1.0), cycle);
     }
 } // namespace ventilator
