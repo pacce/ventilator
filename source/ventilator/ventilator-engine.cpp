@@ -25,7 +25,7 @@ namespace ventilator {
     Engine::Engine(QWidget * parent)
         : QWidget(parent)
         , step_(100us)
-        , lung_(configuration::RESISTANCE, configuration::COMPLIANCE)
+        , lung_(configuration::RESISTANCE, configuration::COMPLIANCE_LITER)
     {
         Frequency   frequency(configuration::FREQUENCY);
         Ratio       ratio(configuration::INSIPIRATORY_RATIO, configuration::EXPIRATORY_RATIO);

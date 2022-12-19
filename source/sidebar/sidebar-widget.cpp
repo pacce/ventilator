@@ -10,7 +10,7 @@ namespace sidebar {
     {
         setMaximumWidth(500);
 
-        lung_ = new lung::Lung(configuration::COMPLIANCE, configuration::RESISTANCE);
+        lung_ = new lung::Lung(configuration::COMPLIANCE_MILILITER, configuration::RESISTANCE);
         ventilator_ = new ventilator::Ventilator;
 
         QVBoxLayout * layout = new QVBoxLayout;

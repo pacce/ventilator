@@ -8,7 +8,8 @@ namespace configuration {
     using namespace ventilation::frequency::literals;
 
     const ventilation::Resistance<double>   RESISTANCE(50.0);
-    const ventilation::Compliance<double>   COMPLIANCE(30.0);
+    const ventilation::Compliance<double>   COMPLIANCE_MILILITER(30.0);
+    const ventilation::Compliance<double>   COMPLIANCE_LITER(30.0e-3);
 
     const ventilation::PEEP<double>             PEEP( 5.0);
     const ventilation::pressure::Peak<double>   PEAK(20.0);
