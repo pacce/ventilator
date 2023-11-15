@@ -13,6 +13,7 @@ namespace lung {
         layout->addRow("Resistance (cmH<sub>2</sub>O.s.L<sup>-1</sup>)", resistance_);
         setLayout(layout);
         setTitle("Lung");
+        setMaximumHeight(minimumSizeHint().height());
 
         connect(
                   compliance_
